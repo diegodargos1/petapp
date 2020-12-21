@@ -8,8 +8,6 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css';
 
-//import { geolocated } from "react-geolocated";
-
 function Maps() {
     const position = [49.2008613, -122.9176757];
     return (
