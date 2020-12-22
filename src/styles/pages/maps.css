@@ -62,3 +62,8 @@
 #page-map .create-store:hover {
     background: #17d6eb;
 }
+
+.leaflet-div-icon{
+    background: url('../../assets/images/boxicon.png') no-repeat 80% center;
+}
+
