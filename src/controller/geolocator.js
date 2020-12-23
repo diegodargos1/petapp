@@ -1,6 +1,6 @@
-import React, { Component, useRef } from "react";
+import React from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
-import { iconPerson } from '../assets/icons/iconMarker';
+
 
 function MyComponent(props) {
     const map = useMap();
