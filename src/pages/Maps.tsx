@@ -21,6 +21,7 @@ function Maps() {
     useEffect(() => {
         let checkLocation = () => {
             if (navigator.geolocation) {
+                console.log("aqui")
                 navigator.permissions
                     .query({ name: "geolocation" })
                     .then(function (result) {
