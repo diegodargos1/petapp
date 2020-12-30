@@ -1,0 +1,187 @@
+#page-cadastrar {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-cadastrar .logo {
+    margin-top: 10px;
+}
+
+#page-cadastrar .content-wrapper {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 600px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
+}
+
+#page-cadastrar .content-wrapper main h1{
+    color: rgb(0, 0, 0);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 70px;
+    text-align: center;
+}
+
+
+#page-cadastrar .content-wrapper main p{
+    color: rgb(0, 0, 0);
+    margin-top: 0px;
+    font-size: 24px; 
+    line-height: 0px;
+    text-align: center;
+}
+
+.content-wrapper .location{
+    color: #0000;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    font-size: 24px;
+    line-height: 34px;
+}
+
+.content-wrapper .location strong{
+    font-weight: 800;
+}
+
+.content-wrapper .enter-app{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 80px;
+    height: 80px;
+
+    background: #ffd666;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.content-wrapper .enter-app:hover{
+    background: #96feff;
+}
+
+.loginLink{
+    color: #0000;
+    margin-left: 20px;
+}
+
+
+
+.form-signin {
+    margin: 2em 0;
+  }
+  /**
+  * Make the field a flex-container, reverse the order so label is on top.
+  */
+   
+  .field {
+    display: flex;
+    flex-flow: column-reverse;
+    margin-bottom: 1em;
+  }
+  /**
+  * Add a transition to the label and input.
+  * I'm not even sure that touch-action: manipulation works on
+  * inputs, but hey, it's new and cool and could remove the 
+  * pesky delay.
+  */
+  .form-signin label, input {
+    transition: all 0.2s;
+    touch-action: manipulation;
+  }
+  
+  .form-signin input {
+    font-size: 1.5em;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-family: inherit;
+    -webkit-appearance: none;
+    border-radius: 0;
+    padding: 0;
+    cursor: text;
+  }
+  
+  .form-signin input:focus {
+    outline: 0;
+    border-bottom: 1px solid #666;
+  }
+  
+  .form-signin label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  /**
+  * Translate down and scale the label up to cover the placeholder,
+  * when following an input (with placeholder-shown support).
+  * Also make sure the label is only on one row, at max 2/3rds of the
+  * field—to make sure it scales properly and doesn't wrap.
+  */
+  .form-signin input:placeholder-shown + label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0, 1.125rem) scale(1.2);
+    color: #000;
+  }
+  /**
+  * By default, the placeholder should be transparent. Also, it should 
+  * inherit the transition.
+  */
+  ::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+  }
+  /**
+  * Show the placeholder when the input is focused.
+  */
+  .form-signin input:focus::-webkit-input-placeholder {
+    opacity: 1;
+  }
+  /**
+  * When the element is focused, remove the label transform.
+  * Also, do this when the placeholder is _not_ shown, i.e. when 
+  * there's something in the input at all.
+  */
+  .form-signin input:not(:placeholder-shown) + label,
+  .form-signin input:focus + label {
+    transform: translate(0, 0) scale(1);
+    cursor: pointer;
+  }
+
+  .create-store {
+    border: 0px;
+    padding: 20px;
+    height: 64px;
+    background: #15c3d6;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+    color: white;
+}
+
+  .create-store:hover {
+    background: #17d6eb;
+}

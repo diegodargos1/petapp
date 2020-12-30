@@ -20,8 +20,12 @@ function Landing() {
             </p>
                 </main>
                 <div className="location">
-                    <span>Em todo </span>
-                    <strong>Brasil</strong>
+                    <Link to="/map" className="loginLink">
+                        Entrar
+                    </Link>
+                    <Link to="/cadastrar" className="loginLink">
+                        Cadastrar
+                    </Link>
                 </div>
                 <Link to="/map" className="enter-app">
                     <FiArrowRight size={26} color="rgba(0,0,0,0.6)" />

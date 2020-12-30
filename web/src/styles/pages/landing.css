@@ -76,3 +76,8 @@
 .content-wrapper .enter-app:hover{
     background: #96feff;
 }
+
+.loginLink{
+    color: white;
+    margin-left: 20px;
+}
