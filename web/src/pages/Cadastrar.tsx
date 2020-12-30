@@ -44,9 +44,6 @@ function Cadastrar() {
                     <Link to="/map" className="loginLink">
                         Entrar
                     </Link>
-                    <Link to="/cadastrar" className="loginLink">
-                        Cadastrar
-                    </Link>
                 </div>
             </div>
         </div>
