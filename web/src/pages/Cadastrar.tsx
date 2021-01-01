@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/global.css';
 import '../styles/pages/cadastrar.css';
 import logoImg from '../assets/images/boxicon.png'
-import { FiPlus } from 'react-icons/fi'
+import LoginFacebook from '../components/facebook'
 import { Link } from 'react-router-dom'
 
 
 function Cadastrar() {
+    let [ isHidden, setIsHidden ] = useState(false);
+
+    const toggleHidden = () => {
+        setIsHidden(!isHidden);
+    }
+
     return (
         <div id="page-cadastrar">
             <div className="content-wrapper">
@@ -18,32 +24,42 @@ function Cadastrar() {
                     <p>
                         E rapido e facil.
                     </p>
-                    <form className="form-signin"action="">
-                        <div className="field">
-                            <input type="text" name="email" id="email" placeholder="email@email.com" />
-                            <label htmlFor="email">Email</label>
-                        </div>
-                        
-                        <div className="field">
-                            <input type="password" name="password" id="password" placeholder="******"/>
-                            <label htmlFor="password">Senha</label>
-                        </div>
-                        <div className="field">
-                            <input type="password" name="confirma" id="confirma" placeholder="******"/>
-                            <label htmlFor="confirma">Confirmar</label>
-                        </div>
+                    <div className={"div-face"}>
+                    <LoginFacebook />
+                        {/* <button className={"create-store-face"} onClick={toggleHidden}>
+                            Cadastrar com Facebook
+                        </button> */}
+                    </div>
+                    <div className="separator">OU</div>
+                    <div className={"form-box"}>
                         <div>
-                            <button className="create-store">
-                                Cadastrar
-                            </button>
+                            <form className={"form-signin" } action="">
+                                <div className="field">
+                                    <input type="text" name="email" id="email" placeholder="email@email.com" />
+                                    <label htmlFor="email">Email</label>
+                                </div>
+                                
+                                <div className="field">
+                                    <input type="password" name="password" id="password" placeholder="******"/>
+                                    <label htmlFor="password">Senha</label>
+                                </div>
+                                <div className="field">
+                                    <input type="password" name="confirma" id="confirma" placeholder="******"/>
+                                    <label htmlFor="confirma">Repetir senha</label>
+                                </div>
+                                <div className="box-buttons">
+                                    <button className="create-store-register" >
+                                        Cadastrar
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        
-                </form>
+                    </div>
                 </main>
                 <div className="location">
-                    <Link to="/map" className="loginLink">
+                    {/* <Link to="/map" className="loginLink">
                         Entrar
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

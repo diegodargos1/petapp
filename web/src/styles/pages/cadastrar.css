@@ -11,12 +11,17 @@
 #page-cadastrar .logo {
     margin-top: 10px;
 }
+#page-cadastrar .content-wrapper main {
+    flex-direction: column;
+    display: flex;
+    width: 80%;
+}
 
 #page-cadastrar .content-wrapper {
     width: 100%;
     max-width: 500px;
     height: 100%;
-    max-height: 600px;
+    max-height: 90%;
     position: relative;
     display: flex;
     align-items: center;
@@ -79,15 +84,14 @@
 }
 
 #page-cadastrar .loginLink{
-    color: #0000;
+    color: #000;
     margin-left: 20px;
 }
 
-
-
 .form-signin {
-    margin: 2em 0;
-  }
+    font-size: 15px;
+}
+
   /**
   * Make the field a flex-container, reverse the order so label is on top.
   */
@@ -168,8 +172,38 @@
     transform: translate(0, 0) scale(1);
     cursor: pointer;
   }
-
+  
   #page-cadastrar  .create-store {
+    border: 0px;
+    padding: 20px;
+    background: #15c3d6;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100%;
+}
+
+#page-cadastrar  .div-face {
+    margin-top: 15px;
+}
+
+#page-cadastrar  .create-store-face {
+    margin-top: 15px;
+    border: 0px;
+    padding: 20px;
+    height: 64px;
+    background: #4267B2;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100%;
+}
+
+#page-cadastrar  .create-store-register {
     border: 0px;
     padding: 20px;
     height: 64px;
@@ -178,10 +212,68 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.2s;
     color: white;
+    width: 100%;
+}
+
+#page-cadastrar  .create-store-back {
+    border: 0px;
+    padding: 20px;
+    height: 64px;
+    background: #979797;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 20%;
+}
+
+
+#page-cadastrar .create-store-hidden {
+    margin: 2em 0;
+    position: absolute;
+    height: 64px;
+    background-color: white;
+    z-index: 1;
+    width: 80%;
+    animation: opacityOut 0.3s, transformOut 0.3s, visibilityOut 0.3s;
+    transform-origin: 0% 100%;
+    opacity: 0;
+    visibility: hidden;
 }
 
 #page-cadastrar .create-store:hover {
     background: #17d6eb;
+}
+
+#page-cadastrar .form-box{
+    justify-content: flex-start;
+}
+
+#page-cadastrar .buttons-register{
+    margin: 2em 0;
+    width: 100%;
+    background-color: white;
+    animation: opacityIn 0.3s, transformIn 0.3s, visibilityIn 0.3s;
+    transform-origin: 0% 100%;
+}
+
+.separator {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000;
+}
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+}
+.separator::before {
+    margin-right: .25em;
+}
+.separator::after {
+    margin-left: .25em;
 }
