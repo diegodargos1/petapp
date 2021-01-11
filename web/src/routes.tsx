@@ -1,8 +1,8 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Cadastrar from './pages/Cadastrar'
 import Landing from './pages/Landing'
 import Maps from './pages/Maps'
-import Cadastrar from './pages/Cadastrar'
 
 function Routes() {
     return (

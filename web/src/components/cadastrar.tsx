@@ -21,7 +21,7 @@ interface DispatchProps {
 }
 
 interface Ownprops {
-
+    display: boolean
 }
 
 type Props = Stateprops & DispatchProps & Ownprops
@@ -118,59 +118,57 @@ class Cadastrar extends React.Component<Props> {
         }
 
         return (
-            <div id="page-cadastrar">
-                <div className="content-wrapper">
-                    <img src={logoImg} alt="logo" className="logo" />
-                    <main>
-                        <h1>
-                            Cadastre-se
+            <>
+                <img src={logoImg} alt="logo" className="logo-cadastrar" />
+                <main>
+                    <h1>
+                        Cadastre-se
                     </h1>
-                        <p>
-                            E rapido e facil.
+                    <p>
+                        E rapido e facil.
                     </p>
-                        <div className={"div-face"}>
-                            <LoginFacebook />
-                            {/* <button className={"create-store-face"} onClick={toggleHidden}>
+                    <div className={"div-face"}>
+                        <LoginFacebook />
+                        {/* <button className={"create-store-face"} onClick={toggleHidden}>
                             Cadastrar com Facebook
                         </button> */}
-                        </div>
-                        <div className="separator">OU</div>
-                        <div className={"form-box"}>
-                            <div>
-                                <form className={"form-signin"} onSubmit={formSubmit}>
-                                    <div className="field">
-                                        <input type="text" ref={this.nomeInput} name="nome" id="nome" placeholder="Seu nome" onChange={handleInput} />
-                                        <label style={{ color: this.state.nomeColor }} htmlFor="nome">Nome*</label>
-                                    </div>
-                                    <div className="field">
-                                        <input type="text" ref={this.emailInput} name="email" id="email" placeholder="email@email.com" onChange={handleInput} />
-                                        <label style={{ color: this.state.emailColor }} htmlFor="email">{this.state.emailTxt}</label>
+                    </div>
+                    <div className="separator">OU</div>
+                    <div className={"form-box"}>
+                        <div>
+                            <form className={"form-signin"} onSubmit={formSubmit}>
+                                <div className="field">
+                                    <input type="text" ref={this.nomeInput} name="nome" id="nome" placeholder="Seu nome" onChange={handleInput} />
+                                    <label style={{ color: this.state.nomeColor }} htmlFor="nome">Nome*</label>
+                                </div>
+                                <div className="field">
+                                    <input type="text" ref={this.emailInput} name="email" id="email" placeholder="email@email.com" onChange={handleInput} />
+                                    <label style={{ color: this.state.emailColor }} htmlFor="email">{this.state.emailTxt}</label>
+                                </div>
+
+                                <div className="field">
+                                    <div className="p-viewer" onClick={handlePviewer}>
+                                        <FiEye size={26} color="rgba(0,0,0,0.6)"></FiEye>
                                     </div>
 
-                                    <div className="field">
-                                        <div className="p-viewer" onClick={handlePviewer}>
-                                            <FiEye size={26} color="rgba(0,0,0,0.6)"></FiEye>
-                                        </div>
-
-                                        <input type={this.state.pViewer ? "text" : "password"} ref={this.pwInput} name="password" id="password" placeholder="******" onChange={handleInput} />
-                                        <label style={{ color: this.state.passwordColor }} htmlFor="password">{this.state.passwordTxt}</label>
-                                    </div>
-                                    <div className="box-buttons">
-                                        <button className="create-store-register">
-                                            Cadastrar
+                                    <input type={this.state.pViewer ? "text" : "password"} ref={this.pwInput} name="password" id="password" placeholder="******" onChange={handleInput} />
+                                    <label style={{ color: this.state.passwordColor }} htmlFor="password">{this.state.passwordTxt}</label>
+                                </div>
+                                <div className="box-buttons">
+                                    <button className="create-store-register">
+                                        Cadastrar
                                     </button>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
-                    </main>
-                    <div className="location">
-                        {/* <Link to="/map" className="loginLink">
+                    </div>
+                </main>
+                <div className="location">
+                    {/* <Link to="/map" className="loginLink">
                         Entrar
                     </Link> */}
-                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 }

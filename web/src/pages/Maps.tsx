@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
+import { FiPlus } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import logoImg from '../assets/images/boxicon.png';
+import GeoLocation from '../controller/geolocator';
 import '../styles/global.css';
 import '../styles/pages/maps.css';
-import logoImg from '../assets/images/boxicon.png'
-import { Link } from 'react-router-dom'
-import { FiPlus } from 'react-icons/fi'
-
-import GeoLocation from '../controller/geolocator'
 const { detect } = require('detect-browser');
-// import 'leaflet/dist/leaflet.css';
 
 const browser = detect();
 
@@ -55,9 +53,9 @@ function Maps() {
             setLongitude(crd.longitude)
         }
 
-        if(browser.name === 'safari'){
+        if (browser.name === 'safari') {
             checkLocationSafari()
-        }else{
+        } else {
             checkLocationChrome()
         }
     });

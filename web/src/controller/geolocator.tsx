@@ -1,14 +1,19 @@
-import React from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
-import logoImg from '../assets/images/marker.png'
 import L from 'leaflet';
+import React from "react";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import logoImg from '../assets/images/marker.png';
 
+interface Props {
+    latitude: number,
+    longitude: number;
 
-function MyComponent(props) {
+}
+
+function MyComponent(props: { latitude: number; longitude: number; }) {
     const map = useMap();
     //map.setCenter([props.latitude, props.longitude])
-    map.setView([props.latitude, props.longitude], 13)
-    return null
+    map.setView([props.latitude, props.longitude], 13);
+    return null;
 }
 
 let loveIcon = L.icon({
@@ -19,7 +24,7 @@ let loveIcon = L.icon({
     // iconSize: [25, 55],
 });
 
-function GeoLocation(props) {
+function GeoLocation(props: { latitude: number; longitude: number; }) {
 
     return (
         <MapContainer style={{ width: "100%", height: "100%" }} center={[props.latitude, props.longitude]} zoom={13} >

@@ -16,3 +16,17 @@ body, input, button, textarea{
 .img {
     width: 400px;
 }
+
+.loadingDiv{
+    position: absolute;
+    height: 30vh;
+    width: 15vw;
+    background-color: white;
+    z-index: 99;
+    opacity: 1;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.35);
+    background: url('../assets/images/loading.gif') no-repeat 50% center;
+    background-color: white;
+    background-size: 60%;
+}

@@ -1,23 +1,25 @@
 #page-cadastrar {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
+    position: absolute;
+    z-index: 8;
+    background-color: rgb(255 255 255 / 50%);
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#page-cadastrar .logo {
+#page-cadastrar .logo-cadastrar {
     margin-top: 10px;
 }
-#page-cadastrar .content-wrapper main {
+#page-cadastrar .content-wrapper-cadastrar main {
     flex-direction: column;
     display: flex;
     width: 80%;
 }
 
-#page-cadastrar .content-wrapper {
+#page-cadastrar .content-wrapper-cadastrar {
     width: 100%;
     max-width: 500px;
     height: 100%;
@@ -32,7 +34,7 @@
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
 }
 
-#page-cadastrar .content-wrapper main h1{
+#page-cadastrar .content-wrapper-cadastrar main h1{
     color: rgb(0, 0, 0);
     font-size: 36px;
     font-weight: 700;
@@ -41,7 +43,7 @@
 }
 
 
-#page-cadastrar .content-wrapper main p{
+#page-cadastrar .content-wrapper-cadastrar main p{
     color: rgb(0, 0, 0);
     margin-top: 0px;
     font-size: 24px; 
@@ -276,4 +278,23 @@
 }
 .separator::after {
     margin-left: .25em;
+}
+
+.p-viewer{
+    position: absolute;
+    right: 10%;
+    cursor: pointer;
+}
+
+.close-cadastro{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+
+@media only screen and (max-height: 650px) {
+    #page-cadastrar .logo-cadastrar {
+        display: none;
+    }
 }
