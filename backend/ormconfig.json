@@ -1,0 +1,16 @@
+{
+    "type": "mysql",
+    "host": "petapp.mysql.uhserver.com",
+    "database": "petapp",
+    "username": "petapp",
+    "password": "Luna604@",
+    "migrations": [
+        "./src/database/migrations/*.ts"
+    ],
+    "entities": [
+        "./src/models/*.ts"
+    ],
+    "cli": {
+        "migrationsDir": "./src/database/migrations"
+    }
+}

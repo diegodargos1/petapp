@@ -1,17 +1,25 @@
-const express = require('express');
+import { Router } from 'express';
+import multer from 'multer';
+import uploadConfig from './config/upload';
+import LandingStoreController from './controllers/LandingStoreController';
+import UserController from './controllers/UserController';
 
-const UserController = require('./controllers/UserController');
-const StoreController = require('./controllers/StoreController');
-const StoreLocationController = require('./controllers/StoreLocationController');
+const routes = Router();
+const upload = multer(uploadConfig);
 
-const routes = express.Router();
+routes.post('/users', UserController.store);
+routes.post('/users/login', UserController.index);
+routes.post('/users/face', UserController.indexFace);
+routes.post('/users/check', UserController.indexCheck);
+//routes.post('/stores', StoreController.store);
+// routes.post('/stores/location', upload.array('images'), StoreController.store);
+// routes.get('/stores/location/:lat/:lon', StoreController.index);
+routes.post('/cadastro/stores/:id', upload.array('images'), LandingStoreController.store);
+routes.post('/update/stores/', LandingStoreController.update);
+routes.get('/listar/stores/:id', upload.array('images'), LandingStoreController.index);
 
-routes.post('/users', UserController.store )
-routes.post('/stores', StoreController.store )
-routes.post('/stores/location', StoreLocationController.store )
-routes.get('/stores/location/:lat/:lon', StoreLocationController.index )
 
-module.exports = routes;
+export default routes;
 
 
 
@@ -44,7 +52,7 @@ module.exports = routes;
 //     });
 //     console.log(result)
 //     connection.end();
-    
+
 //     //console.log(request.query); "url?search"
 //     //console.log(request.params); "url/:lat"
 //     //console.log(request.body); "json/multipart form"
