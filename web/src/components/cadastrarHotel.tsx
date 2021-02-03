@@ -174,8 +174,9 @@ class CadastrarHotel extends React.Component<Props> {
         }
 
         const getLatLon = async () => {
+            const teste = 123;
             const address = this.state.rua.replace(/\s/g, "+") + "+" + this.state.numero.replace(" ", "+") + "+" + this.state.cep.replace("-", "");
-            await api.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAlT927iQT9weuSg_0nWT0qreEh8cc6DPs&address=${address}`)
+            await api.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${teste}&address=${address}`)
                 .then(res => {
                     if (res.data.results[0].geometry.location) {
                         this.setState({
