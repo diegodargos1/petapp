@@ -7,6 +7,7 @@
 body {
     color: #FFF;
     background: #ebF2F5;
+    height: 100%;
 }
 
 body, input, button, textarea{
@@ -16,17 +17,26 @@ body, input, button, textarea{
 .img {
     width: 400px;
 }
-
-.loadingDiv{
+.loading-box{
+    width: 100vw;
+    height: 100vh;
     position: absolute;
-    height: 30vh;
-    width: 15vw;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.399);
+    z-index: 99;
+    
+}
+.loadingDiv{
+    height: 25vh;
+    width: 20vw;
     z-index: 99;
     opacity: 1;
-    border-radius: 10px;
+    border-radius: 100px;
     box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.35);
-    background: url('../assets/images/loading.gif') no-repeat 50% center;
+    background: url('../assets/images/loading2.gif') no-repeat 50% center;
     background-color: white;
-    background-size: 60%;
+    background-size: 100%;
 }

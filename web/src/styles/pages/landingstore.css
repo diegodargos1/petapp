@@ -1,5 +1,4 @@
-#page-landing {
-    width: 100vw;
+#page-landingstore {
     height: 100vh;
     background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
 
@@ -9,40 +8,50 @@
 }
 
 @media only screen and (min-width: 901px) {
-    #page-landing .content-wrapper {
-        background: url('../../assets/images/background.png') no-repeat 80% center;
-        background-size: 500px 500px;
+    #page-landingstore .content-wrapper {
+        /* background: url('../../assets/images/background.png') no-repeat 40% center;
+        background-size: 250px 250px; */
     }
 }
 
-#page-landing .content-wrapper {
+#page-landingstore .content-wrapper {
     width: 100%;
+    height: 100vh;
     max-width: 1100px;
 
-    height: 100%;
-    max-height: 600px;
 
     position: relative;
     display: flex;
     align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-between;
-
-    margin-bottom: 50px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-#page-landing .content-wrapper main{
+#page-landingstore .content-wrapper-dashboard {
+    width: 100%;
+    max-width: 1100px;
+
+
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+#page-landingstore .content-wrapper main{
     max-width: 350px;
+    margin-right: 50px;
 }
 
-#page-landing .content-wrapper main h1{
-    font-size: 76px;
+#page-landingstore .content-wrapper main h1{
+    font-size: 56px;
     font-weight: 700;
     line-height: 70px;
 }
 
 
-#page-landing .content-wrapper main p{
+#page-landingstore .content-wrapper main p{
     margin-top: 40px;
     font-size: 24px; 
     line-height: 34px;
@@ -56,6 +65,13 @@
     font-size: 24px;
     line-height: 34px;
 }
+
+#page-landingstore .form-signin h1{
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 70px;
+}
+
 
 .content-wrapper .location strong{
     font-weight: 800;
@@ -114,54 +130,74 @@ li {
     top: 15px;
 }
 
+.hotel-list {
+    color: black;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.hotel-list tbody tr{
+    border-bottom: solid white 10px;
+    cursor: pointer;
+}
+.hotel-list tbody td{
+    border-right: solid white 15px;
+    border-left: solid white 15px;
+}
+.hotel-list tbody tr:hover {
+    background-color: rgb(199, 225, 248);
+    border-bottom: solid rgb(199, 225, 248) 10px;
+}
+
+.hotel-list tbody tr:hover td{
+    border-right: solid rgb(199, 225, 248) 15px;
+    border-left: solid rgb(199, 225, 248) 15px;
+}
+
+
+
 @media only screen and (max-width: 900px) {
     html {
         background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
     }
-    #page-landing {
-        width: 100vw;
-        height: auto;
+    #page-landingstore {
         background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
     
         display: flex;
         justify-content: center;
         align-items: flex-start;
     }
-    #page-landing .content-wrapper {
+    
+    #page-landingstore .content-wrapper-dashboard {
         width: 90%;
         max-width: 1100px;
-    
-        
-        max-height: 95%;
+        height: 100%;
     
         position: relative;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column;
         justify-content: flex-start;
     
-        margin-top: 10px;
-        margin-bottom: 40px;
+        margin-bottom: 10px;
     }
 
-    #page-landing .content-wrapper main {
-        background: url('../../assets/images/background.png') no-repeat 80% 80%;
+    #page-landingstore .content-wrapper main {
+        background: none;
         background-size: 200px 200px;
 
         margin-top: 5%;
     }
 
-    #page-landing .content-wrapper main h1{
-        font-size: 60px;
+    #page-landingstore .content-wrapper main h1{
+        font-size: 40px;
         font-weight: 700;
         line-height: 65px;
-        margin-bottom: 150px;
+        margin-bottom: 15px;
     }
 
-    #page-landing .content-wrapper main p{
-        margin-top: 40px;
-        font-size: 25px; 
-        line-height: 34px;
+    #page-landingstore .content-wrapper main p{
+        display: none;
     }
 
     .content-wrapper .enter-app{
@@ -181,24 +217,23 @@ li {
   }
 
   @media only screen and (max-height: 700px) {
-    #page-landing {
-        width: 100vw;
-        height: auto;
+    #page-landingstore {
+        
         background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
     
         display: flex;
         justify-content: center;
         align-items: flex-start;
     }
-    #page-landing .content-wrapper main {
+    #page-landingstore .content-wrapper main {
         background: url('../../assets/images/background.png') no-repeat 80% 100%;
         background-size: 200px 200px;
     }
-    #page-landing .content-wrapper main p{
+    #page-landingstore .content-wrapper main p{
         display: none;
     }
 
-    #page-landing .content-wrapper main h1{
+    #page-landingstore .content-wrapper main h1{
         font-size: 45px;
         font-weight: 700;
         line-height: 65px;

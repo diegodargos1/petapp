@@ -6,8 +6,12 @@
     display: flex;
 }
 
-#page-map aside{
-    width: 440px;
+#menu{
+    position: absolute;
+    width: 0px;
+    opacity: 0;
+    height: 100%;
+    
 
     background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
     padding: 80px;
@@ -15,6 +19,53 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#store-detail{
+    position: absolute;
+    width: 0px;
+    opacity: 0;
+    height: 100%;
+    
+
+    background: #F8F8F8 !important;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#page-map .asideOn{
+    width: 440px;
+    opacity: 1;
+    z-index: 56;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#page-map .asideOff{
+    width: 0px;
+    opacity: 0;
+    z-index: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 #page-map aside h2 {
@@ -34,6 +85,7 @@
     flex-direction: column;
 
     line-height: 24px;
+    margin-bottom: 40px;
 }
 
 #page-map .leaflet-container{
@@ -42,7 +94,7 @@
 
 #page-map .create-store {
     position: absolute;
-    right: 40px;
+    left: 20px;
     bottom: 40px;
 
     z-index: 10;
@@ -67,3 +119,28 @@
     background: url('../../assets/images/boxicon.png') no-repeat 80% center;
 }
 
+
+@media only screen and (max-width: 900px) {
+    #page-map .create-store {
+        position: absolute;
+        left: 20px;
+        bottom: 120px;
+
+        z-index: 10;
+
+        width: 64px;
+        height: 64px;
+        background: #15c3d6;
+        border-radius: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: background-color 0.2s;
+    }
+
+    #page-map .asideOn{
+        width: 340px;
+    }
+}

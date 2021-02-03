@@ -7,7 +7,9 @@ export default class LoginFacebook extends Component
         auth: false,
         name: '',
         email: '',
-        picture: ''
+        picture: '',
+        id: '',
+        accessToken: ''
     };
 
     render ()
@@ -17,15 +19,17 @@ export default class LoginFacebook extends Component
         {
             this.setState( {
                 auth: false,
-                nome: response.name,
+                name: response.name,
                 email: response.email,
-                picture: ( response.picture ) ? response.picture.data.url : ""
+                picture: ( response.picture ) ? response.picture.data.url : "",
+                id: response.id,
+                accessToken: response.accessToken
             } );
+            this.props.submit( this.state );
         };
 
         const componentClicked = ( response ) =>
         {
-            console.log( response );
         };
 
 

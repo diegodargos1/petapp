@@ -1,29 +1,26 @@
-#page-cadastrar {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
+#page-cadastrar-box {
+    width: 100%;
     z-index: 8;
-    background-color: rgb(255 255 255 / 50%);
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#page-cadastrar .logo-cadastrar {
+#page-cadastrar-box .logo-cadastrar {
     margin-top: 10px;
 }
-#page-cadastrar .content-wrapper-cadastrar main {
+#page-cadastrar-box .content-wrapper-cadastrar .main-box {
     flex-direction: column;
     display: flex;
     width: 80%;
 }
 
-#page-cadastrar .content-wrapper-cadastrar {
+#page-cadastrar-box .content-wrapper-cadastrar {
     width: 100%;
     max-width: 500px;
     height: 100%;
-    max-height: 90%;
+    /* max-height: 90%; */
     position: relative;
     display: flex;
     align-items: center;
@@ -31,19 +28,17 @@
     margin-bottom: 20px;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
 }
 
-#page-cadastrar .content-wrapper-cadastrar main h1{
+#page-cadastrar-box .content-wrapper-cadastrar .main-box h1{
     color: rgb(0, 0, 0);
     font-size: 36px;
     font-weight: 700;
-    line-height: 70px;
+    line-height: 50px;
     text-align: center;
 }
 
-
-#page-cadastrar .content-wrapper-cadastrar main p{
+#page-cadastrar-box .content-wrapper-cadastrar .main-box p{
     color: rgb(0, 0, 0);
     margin-top: 0px;
     font-size: 24px; 
@@ -81,11 +76,11 @@
     transition: background-color 0.2s;
 }
 
-#page-cadastrar  .content-wrapper .enter-app:hover{
+#page-cadastrar-box  .content-wrapper .enter-app:hover{
     background: #96feff;
 }
 
-#page-cadastrar .loginLink{
+#page-cadastrar-box .loginLink{
     color: #000;
     margin-left: 20px;
 }
@@ -175,7 +170,7 @@
     cursor: pointer;
   }
   
-  #page-cadastrar  .create-store {
+  #page-cadastrar-box .create-store {
     border: 0px;
     padding: 20px;
     background: #15c3d6;
@@ -187,11 +182,11 @@
     width: 100%;
 }
 
-#page-cadastrar  .div-face {
+#page-cadastrar-box  .div-face {
     margin-top: 15px;
 }
 
-#page-cadastrar  .create-store-face {
+#page-cadastrar-box  .create-store-face {
     margin-top: 15px;
     border: 0px;
     padding: 20px;
@@ -205,7 +200,13 @@
     width: 100%;
 }
 
-#page-cadastrar  .create-store-register {
+#page-cadastrar-box  .create-store-face:hover {
+    background: #4e6fb3;
+}
+
+
+
+#page-cadastrar-box  .create-store-register {
     border: 0px;
     padding: 20px;
     height: 64px;
@@ -218,7 +219,11 @@
     width: 100%;
 }
 
-#page-cadastrar  .create-store-back {
+#page-cadastrar-box  .create-store-register:hover {
+    background: #17d6eb;
+}
+
+#page-cadastrar-box  .create-store-back {
     border: 0px;
     padding: 20px;
     height: 64px;
@@ -232,7 +237,7 @@
 }
 
 
-#page-cadastrar .create-store-hidden {
+#page-cadastrar-box .create-store-hidden {
     margin: 2em 0;
     position: absolute;
     height: 64px;
@@ -245,20 +250,25 @@
     visibility: hidden;
 }
 
-#page-cadastrar .create-store:hover {
+.create-store-register:hover {
     background: #17d6eb;
 }
 
-#page-cadastrar .form-box{
+#page-cadastrar-box .form-box{
     justify-content: flex-start;
 }
 
-#page-cadastrar .buttons-register{
+#page-cadastrar-box .buttons-register{
     margin: 2em 0;
     width: 100%;
     background-color: white;
     animation: opacityIn 0.3s, transformIn 0.3s, visibilityIn 0.3s;
     transform-origin: 0% 100%;
+}
+
+.box-buttons{
+    
+    margin: 10px 0;
 }
 
 .separator {
@@ -294,7 +304,7 @@
 }
 
 @media only screen and (max-height: 650px) {
-    #page-cadastrar .logo-cadastrar {
+    #page-cadastrar-box .logo-cadastrar {
         display: none;
     }
 }

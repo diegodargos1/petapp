@@ -1,49 +1,47 @@
-#page-cadastrar {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
+html, body {
+    margin: 0;
+    height: 100%;
+}
+#page-cadastrar-hotel {
+    width: 100%;
     z-index: 8;
-    background-color: rgb(255 255 255 / 50%);
+    height: 100%;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#page-cadastrar .logo-cadastrar {
+#page-cadastrar-hotel .logo-cadastrar {
     margin-top: 10px;
 }
-#page-cadastrar .content-wrapper-cadastrar main {
+#page-cadastrar-hotel .content-wrapper-cadastrar .main-box {
     flex-direction: column;
     display: flex;
-    width: 80%;
+    width: 90%;
 }
 
-#page-cadastrar .content-wrapper-cadastrar {
+#page-cadastrar-hotel .content-wrapper-cadastrar {
     width: 100%;
-    max-width: 500px;
-    height: 100%;
-    max-height: 90%;
+    max-width: 900px;
+    height: 95%;
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 20px;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
 }
 
-#page-cadastrar .content-wrapper-cadastrar main h1{
+#page-cadastrar-hotel .content-wrapper-cadastrar .main-box h1{
     color: rgb(0, 0, 0);
     font-size: 36px;
     font-weight: 700;
-    line-height: 70px;
+    line-height: 50px;
     text-align: center;
 }
 
-
-#page-cadastrar .content-wrapper-cadastrar main p{
+#page-cadastrar-hotel .content-wrapper-cadastrar .main-box p{
     color: rgb(0, 0, 0);
     margin-top: 0px;
     font-size: 24px; 
@@ -81,16 +79,16 @@
     transition: background-color 0.2s;
 }
 
-#page-cadastrar  .content-wrapper .enter-app:hover{
+#page-cadastrar-hotel  .content-wrapper .enter-app:hover{
     background: #96feff;
 }
 
-#page-cadastrar .loginLink{
+#page-cadastrar-hotel .loginLink{
     color: #000;
     margin-left: 20px;
 }
 
-.form-signin {
+.form-new-store {
     font-size: 15px;
 }
 
@@ -98,23 +96,43 @@
   * Make the field a flex-container, reverse the order so label is on top.
   */
    
-  .field {
+  .column .field {
     display: flex;
     flex-flow: column-reverse;
     margin-bottom: 1em;
   }
+
+  .row > .field {
+    display: flex;
+    flex-flow: column-reverse;
+    margin-bottom: 1em;
+    width: 100%;
+}
+.row > .field-image {
+    display: flex;
+    flex-flow: column-reverse;
+    margin-bottom: 1em;
+}
+.row > .field:first-child{
+    margin-right: 50px;
+}
+.row > .field:last-child{
+    margin-left: 50px;
+}
+
   /**
   * Add a transition to the label and input.
   * I'm not even sure that touch-action: manipulation works on
   * inputs, but hey, it's new and cool and could remove the 
   * pesky delay.
   */
-  .form-signin label, input {
+  .form-new-store label, input {
     transition: all 0.2s;
     touch-action: manipulation;
   }
   
-  .form-signin input {
+  .form-new-store input {
+    width: 100%;
     font-size: 1.5em;
     border: 0;
     border-bottom: 1px solid #ccc;
@@ -125,12 +143,12 @@
     cursor: text;
   }
   
-  .form-signin input:focus {
+  .form-new-store input:focus {
     outline: 0;
     border-bottom: 1px solid #666;
   }
   
-  .form-signin label {
+  .form-new-store label {
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -140,7 +158,7 @@
   * Also make sure the label is only on one row, at max 2/3rds of the
   * field—to make sure it scales properly and doesn't wrap.
   */
-  .form-signin input:placeholder-shown + label {
+  .form-new-store input:placeholder-shown + label {
     cursor: text;
     max-width: 66.66%;
     white-space: nowrap;
@@ -161,7 +179,7 @@
   /**
   * Show the placeholder when the input is focused.
   */
-  .form-signin input:focus::-webkit-input-placeholder {
+  .form-new-store input:focus::-webkit-input-placeholder {
     opacity: 1;
   }
   /**
@@ -169,13 +187,13 @@
   * Also, do this when the placeholder is _not_ shown, i.e. when 
   * there's something in the input at all.
   */
-  .form-signin input:not(:placeholder-shown) + label,
-  .form-signin input:focus + label {
+  .form-new-store input:not(:placeholder-shown) + label,
+  .form-new-store input:focus + label {
     transform: translate(0, 0) scale(1);
     cursor: pointer;
   }
   
-  #page-cadastrar  .create-store {
+  #page-cadastrar-hotel .create-store {
     border: 0px;
     padding: 20px;
     background: #15c3d6;
@@ -187,11 +205,11 @@
     width: 100%;
 }
 
-#page-cadastrar  .div-face {
+#page-cadastrar-hotel  .div-face {
     margin-top: 15px;
 }
 
-#page-cadastrar  .create-store-face {
+#page-cadastrar-hotel  .create-store-face {
     margin-top: 15px;
     border: 0px;
     padding: 20px;
@@ -205,7 +223,13 @@
     width: 100%;
 }
 
-#page-cadastrar  .create-store-register {
+#page-cadastrar-hotel  .create-store-face:hover {
+    background: #4e6fb3;
+}
+
+
+
+#page-cadastrar-hotel  .create-store-register {
     border: 0px;
     padding: 20px;
     height: 64px;
@@ -218,7 +242,11 @@
     width: 100%;
 }
 
-#page-cadastrar  .create-store-back {
+#page-cadastrar-hotel  .create-store-register:hover {
+    background: #17d6eb;
+}
+
+#page-cadastrar-hotel  .create-store-back {
     border: 0px;
     padding: 20px;
     height: 64px;
@@ -232,7 +260,7 @@
 }
 
 
-#page-cadastrar .create-store-hidden {
+#page-cadastrar-hotel .create-store-hidden {
     margin: 2em 0;
     position: absolute;
     height: 64px;
@@ -245,20 +273,25 @@
     visibility: hidden;
 }
 
-#page-cadastrar .create-store:hover {
+.create-store-register:hover {
     background: #17d6eb;
 }
 
-#page-cadastrar .form-box{
+#page-cadastrar-hotel .form-box{
     justify-content: flex-start;
 }
 
-#page-cadastrar .buttons-register{
+#page-cadastrar-hotel .buttons-register{
     margin: 2em 0;
     width: 100%;
     background-color: white;
     animation: opacityIn 0.3s, transformIn 0.3s, visibilityIn 0.3s;
     transform-origin: 0% 100%;
+}
+
+.box-buttons{
+    
+    margin: 10px 0;
 }
 
 .separator {
@@ -293,8 +326,106 @@
     cursor: pointer;
 }
 
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.row-image{
+    display: flex;
+    flex-direction: row;
+}
+
+.row-image input{
+    width: 150px !important;
+}
+
+.field-funciona {
+    width: 100%;
+}
+
+.field-funciona label{
+    display: block;
+    text-align: center;
+    cursor: text;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform: translate(0, 1.125rem) scale(1.2);
+    color: #000;
+}
+.field-funciona input{
+    width: 80%;
+    text-align: center;
+}
+
+
+.field-funciona div {
+    width: 100%;
+    display: flex;
+    
+    align-items: center;
+    margin-top: 10px;
+}
+.field-funciona div div{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+}
+.field-funciona input::-webkit-input-placeholder {
+    opacity: 1;
+    
+  }
+.form-new-store input:focus::-webkit-input-placeholder {
+    opacity: 1;
+  }
+
+  input[type="file"] {
+      border: 0;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator { background: none; display:none; }
+
 @media only screen and (max-height: 650px) {
-    #page-cadastrar .logo-cadastrar {
+    #page-cadastrar-hotel .logo-cadastrar {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .logo-cadastrar {
+        display: none;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    #page-cadastrar-hotel {
+        height: auto;
+    }
+    #page-cadastrar-hotel .content-wrapper-cadastrar {
+        height: auto;
+    }
+    .row {
+        flex-direction: column;
+    }
+
+    .row > .field:first-child{
+        margin-right: 0;
+    }
+    .row > .field:last-child{
+        margin-left: 0;
+    }
+
+    .field-funciona div {
+        flex-direction: column;
     }
 }
