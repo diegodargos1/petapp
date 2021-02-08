@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiPlus } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { checkField, handleMask } from '../controller/inputCheck';
@@ -91,6 +92,7 @@ class CadastrarHotel extends React.Component<Props> {
         sextaFecha: (this.props.data?.sextaFecha) ? this.props.data.sextaFecha : "",
         sabadoAbre: (this.props.data?.sabadoAbre) ? this.props.data.sabadoAbre : "",
         sabadoFecha: (this.props.data?.sabadoFecha) ? this.props.data.sabadoFecha : "",
+        previewImages: [],
         images: [],
 
         userId: localStorage.getItem('userId'),
@@ -105,24 +107,24 @@ class CadastrarHotel extends React.Component<Props> {
         emailCheck: false,
     }
 
-    componentDidMount() {
-        console.log(this.props.data)
-    }
-
     render() {
         const handleCep = async (id: React.FormEvent<HTMLInputElement>) => {
             this.props.loading();
             let cep = id.currentTarget.value.replace(/[^0-9a-zA-Z]+/g, "");
             await api.get(`https://viacep.com.br/ws/${cep}/json`)
                 .then(res => {
-                    this.props.loading();
                     this.setState({
                         cidade: res.data.localidade,
                         estado: res.data.uf,
                         rua: res.data.logradouro,
                         cep: res.data.cep
                     })
-                })
+                }).catch(error => {
+                    console.log(error)
+                    return false;
+                });
+            this.props.loading();
+
         }
 
         const handleLimpa = (id: React.FormEvent<HTMLInputElement>) => {
@@ -137,8 +139,6 @@ class CadastrarHotel extends React.Component<Props> {
                 [field]: checkField(id),
                 [id.currentTarget.id]: id.currentTarget.value
             })
-
-            console.log(this.state)
         }
         const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
@@ -161,8 +161,45 @@ class CadastrarHotel extends React.Component<Props> {
         }
 
         const postForm = async () => {
+            const data = new FormData();
+            data.append('name', this.state.nome)
+            data.append('razaosocial', this.state.razao)
+            data.append('inscricaoestadual', this.state.inscricao)
+            data.append('cnpj', this.state.cnpj)
+            data.append('website', this.state.website)
+            data.append('telefone', this.state.telefone)
+            data.append('numero', this.state.numero)
+            data.append('complemento', this.state.complemento)
+            data.append('email', this.state.email)
+            data.append('cep', this.state.cep)
+            data.append('cidade', this.state.cidade)
+            data.append('estado', this.state.estado)
+            data.append('rua', this.state.rua)
+            data.append('latitude', String(this.state.latitude))
+            data.append('longitude', String(this.state.longitude))
+            data.append('domingoAbre', this.state.domingoAbre)
+            data.append('domingoFecha', this.state.domingoFecha)
+            data.append('segundaAbre', this.state.segundaAbre)
+            data.append('segundaFecha', this.state.segundaFecha)
+            data.append('tercaAbre', this.state.tercaAbre)
+            data.append('tercaFecha', this.state.tercaFecha)
+            data.append('quartaAbre', this.state.quartaAbre)
+            data.append('quartaFecha', this.state.quartaFecha)
+            data.append('quintaAbre', this.state.quintaAbre)
+            data.append('quintaFecha', this.state.quintaFecha)
+            data.append('sextaAbre', this.state.sextaAbre)
+            data.append('sextaFecha', this.state.sextaFecha)
+            data.append('sabadoAbre', this.state.sabadoAbre)
+            data.append('sabadoFecha', this.state.sabadoFecha)
+
+            this.state.images.forEach(img => {
+                data.append('images', img);
+            })
+
+
+
             const url = (this.state.id) ? `/update/stores` : `/cadastro/stores/${this.state.userId}`
-            await api.post(url, this.state, {
+            await api.post(url, data, {
                 headers: { "Access-Control-Allow-Origin": "*" }
             })
                 .then(res => {
@@ -174,7 +211,7 @@ class CadastrarHotel extends React.Component<Props> {
         }
 
         const getLatLon = async () => {
-            const teste = 123;
+            const teste = 'AIzaSyCXvNlmcNPM6Zf6cmlclGZWTwsdn0supAA';
             const address = this.state.rua.replace(/\s/g, "+") + "+" + this.state.numero.replace(" ", "+") + "+" + this.state.cep.replace("-", "");
             await api.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${teste}&address=${address}`)
                 .then(res => {
@@ -196,8 +233,20 @@ class CadastrarHotel extends React.Component<Props> {
                 });
         }
 
-        const handleImage = (e: React.FormEvent<HTMLInputElement>) => {
+        const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+            if (!e.target.files) return;
 
+            const selectedImages = Array.from(e.target.files);
+
+
+            const selectedImagesPreview = selectedImages.map(img => {
+                return URL.createObjectURL(img);
+            })
+            await this.setState({
+                images: selectedImages,
+                previewImages: selectedImagesPreview
+            })
+            console.log(this.state)
         }
 
 
@@ -283,11 +332,17 @@ class CadastrarHotel extends React.Component<Props> {
                                 <div className="row">
                                     <div className="field-funciona">
                                         <label htmlFor="multi">Importar imagens</label>
-                                        <div>
-                                            <input type='file' id='multi' onChange={handleInput} multiple />
+                                        <div className="images-container">
+                                            {this.state.previewImages.map(img => {
+                                                return (
+                                                    <img src={img} alt="Seu hotel" key={img} />
+                                                )
+                                            })}
+                                            <label htmlFor="image[]" className="new-image"><FiPlus size={24} color="#15b6d6" /></label>
+
+
                                         </div>
-
-
+                                        <input multiple onChange={handleImage} type="file" id="image[]" />
                                     </div>
                                 </div>
                                 <div className="row">
