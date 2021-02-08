@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import * as Yup from 'yup';
 import Store from '../models/Store';
 import storeView from '../views/store_view';
 
@@ -8,9 +9,9 @@ export default {
         const user_id = parseInt(req.params.id);
         const {
             id,
-            nome,
-            razao,
-            inscricao,
+            name,
+            razaosocial,
+            inscricaoestadual,
             cnpj,
             website,
             telefone,
@@ -56,8 +57,8 @@ export default {
             return res.json({ msg: "Ja existe um estabelecimento com esse CNPJ registrado no sistema!" });
         }
 
-        const storeLocation = storeRepository.create({
-            name: nome,
+        const data = {
+            name,
             rua,
             numero,
             cidade,
@@ -70,8 +71,8 @@ export default {
             longitude: parseFloat(longitude),
             cnpj,
             cep,
-            inscricaoestadual: inscricao,
-            razaosocial: razao,
+            inscricaoestadual,
+            razaosocial,
             user_id,
             domingoAbre,
             domingoFecha,
@@ -88,7 +89,30 @@ export default {
             sabadoAbre,
             sabadoFecha,
             images
-        });
+        }
+
+        const schema = Yup.object().shape({
+            name: Yup.string().required('Nome Fantasia obrigatorio.'),
+            rua: Yup.string().required('Rua obrigatorio'),
+            numero: Yup.string().required('Numero obrigatorio'),
+            cidade: Yup.string().required('Cidade obrigatorio'),
+            estado: Yup.string().required('Estado obrigatorio'),
+            cnpj: Yup.string().required('CNPJ obrigatorio'),
+            cep: Yup.string().required('CEP obrigatorio'),
+            inscricaoestadual: Yup.string().required('Inscricao Estadual obrigatorio'),
+            razaosocial: Yup.string().required('Razao Social obrigatorio'),
+            user_id: Yup.number().required('Favor fazer o login novamente.'),
+            images: Yup.array(
+                Yup.object().shape({
+                    path: Yup.string()
+                })
+            )
+        })
+        await schema.validate(data, {
+            abortEarly: false,
+        })
+
+        const storeLocation = storeRepository.create(data);
 
         await storeRepository.save(storeLocation)
 
@@ -114,9 +138,9 @@ export default {
     async update(req: Request, res: Response) {
         const {
             id,
-            nome,
-            razao,
-            inscricao,
+            name,
+            razaosocial,
+            inscricaoestadual,
             cnpj,
             website,
             telefone,
@@ -148,7 +172,7 @@ export default {
         const storeRepository = getRepository(Store);
 
         const storeUpdate = await storeRepository.createQueryBuilder().update(Store).set({
-            name: nome,
+            name,
             rua,
             numero,
             cidade,
@@ -161,8 +185,8 @@ export default {
             longitude: parseFloat(longitude),
             cnpj,
             cep,
-            inscricaoestadual: inscricao,
-            razaosocial: razao,
+            inscricaoestadual,
+            razaosocial,
             domingoAbre,
             domingoFecha,
             segundaAbre,
