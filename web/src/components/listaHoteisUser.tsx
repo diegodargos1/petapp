@@ -32,7 +32,7 @@ class ListaHoteisUser extends React.Component<Props> {
         hoteis: [
             {
                 id: "",
-                name: "",
+                nome: "",
                 rua: "",
                 cidade: "",
                 estado: "",
@@ -85,7 +85,7 @@ class ListaHoteisUser extends React.Component<Props> {
                                         return (
                                             <tr key={hotel.id} onClick={() => { handleTr(i) }}>
                                                 <td >
-                                                    {hotel.name}
+                                                    {hotel.nome}
                                                 </td>
                                                 <td>
                                                     {hotel.cidade + "," + hotel.estado}

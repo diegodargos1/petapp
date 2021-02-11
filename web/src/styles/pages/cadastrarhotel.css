@@ -396,6 +396,22 @@ html, body {
     object-fit: cover;
     border-radius: 20px;
 }
+.images-container .image-container-close {
+    width: 100%;
+    display: flex;
+    margin: 0;
+}
+.images-container .image-container-close span{
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    align-self: flex-end;
+    background-color: white;
+}
   .field-funciona .new-image {
     height: 96px;
     background: #F5F8FA;
@@ -453,5 +469,8 @@ html, body {
 
     .field-funciona div {
         flex-direction: column;
+    }
+    .field-funciona .images-container {
+        grid-template-columns: repeat(3, 1fr);
     }
 }

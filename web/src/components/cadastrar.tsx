@@ -107,7 +107,9 @@ class Cadastrar extends React.Component<Props> {
                         })
                         alert(res.data.msg);
                     })
-
+                this.setState({
+                    loading: false
+                })
             }
         }
 

@@ -137,7 +137,7 @@ li {
 }
 
 .hotel-list tbody tr{
-    border-bottom: solid white 10px;
+    border-bottom: 1px dashed #96D2F0;;
     cursor: pointer;
 }
 .hotel-list tbody td{
@@ -167,6 +167,12 @@ li {
         justify-content: center;
         align-items: flex-start;
     }
+    #page-landingstore .content-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        height: auto;
+    }
     
     #page-landingstore .content-wrapper-dashboard {
         width: 90%;
@@ -185,8 +191,9 @@ li {
     #page-landingstore .content-wrapper main {
         background: none;
         background-size: 200px 200px;
-
+        margin-right: 0;
         margin-top: 5%;
+        text-align: center;
     }
 
     #page-landingstore .content-wrapper main h1{

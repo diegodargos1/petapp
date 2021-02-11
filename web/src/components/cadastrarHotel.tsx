@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiX } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { checkField, handleMask } from '../controller/inputCheck';
@@ -26,7 +26,7 @@ interface Ownprops {
 
 interface Store {
     id?: any;
-    name?: any;
+    nome?: any;
     razaosocial?: any;
     inscricaoestadual?: any;
     cnpj?: any;
@@ -55,7 +55,7 @@ interface Store {
     sextaFecha?: any;
     sabadoAbre?: any;
     sabadoFecha?: any;
-    images?: any;
+    images?: File[];
 }
 
 type Props = Stateprops & DispatchProps & Ownprops
@@ -63,7 +63,7 @@ type Props = Stateprops & DispatchProps & Ownprops
 class CadastrarHotel extends React.Component<Props> {
     state = {
         id: (this.props.data?.id) ? this.props.data.id : "",
-        nome: (this.props.data?.name) ? this.props.data.name : "",
+        nome: (this.props.data?.nome) ? this.props.data.nome : "",
         razao: (this.props.data?.razaosocial) ? this.props.data.razaosocial : "",
         inscricao: (this.props.data?.inscricaoestadual) ? this.props.data.inscricaoestadual : "",
         cnpj: (this.props.data?.cnpj) ? this.props.data.cnpj : "",
@@ -235,18 +235,26 @@ class CadastrarHotel extends React.Component<Props> {
 
         const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
             if (!e.target.files) return;
-
-            const selectedImages = Array.from(e.target.files);
-
+            const selectedImages = Array.from(e.target.files).concat(this.state.images);
 
             const selectedImagesPreview = selectedImages.map(img => {
                 return URL.createObjectURL(img);
             })
+
+
             await this.setState({
                 images: selectedImages,
                 previewImages: selectedImagesPreview
             })
-            console.log(this.state)
+        }
+
+        const handleDeleteImg = (img: any) => {
+            this.state.images.splice(img, 1)
+            this.state.previewImages.splice(img, 1)
+            this.setState({
+                images: this.state.images,
+                previewImages: this.state.previewImages
+            })
         }
 
 
@@ -333,9 +341,12 @@ class CadastrarHotel extends React.Component<Props> {
                                     <div className="field-funciona">
                                         <label htmlFor="multi">Importar imagens</label>
                                         <div className="images-container">
-                                            {this.state.previewImages.map(img => {
+                                            {this.state.previewImages.map((img, i) => {
                                                 return (
-                                                    <img src={img} alt="Seu hotel" key={img} />
+                                                    <div className="image-container-close" key={i}>
+                                                        <span onClick={() => handleDeleteImg(i)}><FiX size={23} color="red" /></span>
+                                                        <img src={img} alt="Seu hotel" key={img} className="img-selected" />
+                                                    </div>
                                                 )
                                             })}
                                             <label htmlFor="image[]" className="new-image"><FiPlus size={24} color="#15b6d6" /></label>
