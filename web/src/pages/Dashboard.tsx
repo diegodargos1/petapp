@@ -42,8 +42,6 @@ class Dashboard extends Component<Props> {
     }
 
     render() {
-        const { users } = this.props
-
         const handleLoading = () => {
             this.setState({
                 loading: !this.state.loading,
