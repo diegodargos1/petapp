@@ -1,15 +1,15 @@
 export const checkField = (text: React.FormEvent<HTMLInputElement>) => {
-    if (text.currentTarget.className == "horario") {
+    if (text.currentTarget.className === "horario") {
         text.currentTarget.value = text.currentTarget.value.replace(/([0-2]{1})([0-9]{1})(\d)$/, "$1$2:$3");
         if (text.currentTarget.value > "2400") text.currentTarget.value = "00:00";
     }
 
     if (text.currentTarget.id === "cnpj") {
-        const reCnpj = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/
+        const reCnpj = /([0-9]{2}?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/
         return reCnpj.test(text.currentTarget.value);
     }
     if (text.currentTarget.id === "website") {
-        const reWeb = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+        const reWeb = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
         return reWeb.test(text.currentTarget.value);
 
     }
@@ -31,7 +31,7 @@ export const handleMask = (id: React.FormEvent<HTMLInputElement>) => {
         if (id.currentTarget.value.length <= 11) {
             id.currentTarget.value = id.currentTarget.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
         } else {
-            id.currentTarget.value = id.currentTarget.value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3\/$4\-$5");
+            id.currentTarget.value = id.currentTarget.value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
         }
     }
     if (id.currentTarget.id === "inscricao") {

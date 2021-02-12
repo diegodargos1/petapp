@@ -152,8 +152,8 @@ class CadastrarHotel extends React.Component<Props> {
             else if (this.state.numero === "") alert("Campo Numero e obrigatorio.")
             else {
                 this.props.loading();
-                const latLon = await getLatLon();
-                const formPost = await postForm();
+                await getLatLon();
+                await postForm();
                 this.props.loading();
 
             }
