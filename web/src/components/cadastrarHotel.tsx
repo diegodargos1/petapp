@@ -120,7 +120,6 @@ class CadastrarHotel extends React.Component<Props> {
                         cep: res.data.cep
                     })
                 }).catch(error => {
-                    console.log(error)
                     return false;
                 });
             this.props.loading();
@@ -211,9 +210,9 @@ class CadastrarHotel extends React.Component<Props> {
         }
 
         const getLatLon = async () => {
-            const teste = 'AIzaSyCXvNlmcNPM6Zf6cmlclGZWTwsdn0supAA';
+            const key = process.env.REACT_APP_TOKEN;
             const address = this.state.rua.replace(/\s/g, "+") + "+" + this.state.numero.replace(" ", "+") + "+" + this.state.cep.replace("-", "");
-            await api.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${teste}&address=${address}`)
+            await api.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${key}&address=${address}`)
                 .then(res => {
                     if (res.data.results[0].geometry.location) {
                         this.setState({
