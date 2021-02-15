@@ -55,7 +55,7 @@ interface Store {
     sextaFecha?: any;
     sabadoAbre?: any;
     sabadoFecha?: any;
-    images?: File[];
+    images?: [];
 }
 
 type Props = Stateprops & DispatchProps & Ownprops
@@ -92,8 +92,8 @@ class CadastrarHotel extends React.Component<Props> {
         sextaFecha: (this.props.data?.sextaFecha) ? this.props.data.sextaFecha : "",
         sabadoAbre: (this.props.data?.sabadoAbre) ? this.props.data.sabadoAbre : "",
         sabadoFecha: (this.props.data?.sabadoFecha) ? this.props.data.sabadoFecha : "",
-        previewImages: [],
-        images: [],
+        previewImages: (this.props.data?.images) ? this.props.data.images : [],
+        images: (this.props.data?.images) ? this.props.data.images : [],
 
         userId: localStorage.getItem('userId'),
         nomeCheck: false,
@@ -255,7 +255,7 @@ class CadastrarHotel extends React.Component<Props> {
                 previewImages: this.state.previewImages
             })
         }
-
+        console.log(this.state)
 
         return (
             <>
@@ -340,11 +340,14 @@ class CadastrarHotel extends React.Component<Props> {
                                     <div className="field-funciona">
                                         <label htmlFor="multi">Importar imagens</label>
                                         <div className="images-container">
-                                            {this.state.previewImages.map((img, i) => {
+                                            {this.state.previewImages.map((img: any, i: any) => {
+                                                console.log(img)
+                                                let imagem = img
+                                                if (img.url !== undefined) imagem = img.url
                                                 return (
                                                     <div className="image-container-close" key={i}>
                                                         <span onClick={() => handleDeleteImg(i)}><FiX size={23} color="red" /></span>
-                                                        <img src={img} alt="Seu hotel" key={img} className="img-selected" />
+                                                        <img src={imagem} alt="Seu hotel" key={imagem} className="img-selected" />
                                                     </div>
                                                 )
                                             })}

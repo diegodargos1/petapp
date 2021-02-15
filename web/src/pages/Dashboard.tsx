@@ -63,8 +63,13 @@ class Dashboard extends Component<Props> {
             })
         }
 
+        const handleLogout = () => {
+            localStorage.clear();
+            this.props.history.push("/");
+        }
+
         const redirect = () => {
-            this.props.history.push("/landing");
+            this.props.history.push("/");
         }
 
         return (
@@ -93,6 +98,12 @@ class Dashboard extends Component<Props> {
                                 <span className="icon arrow"></span>
                             </span>
                             <span className="button-text">Listar Hoteis</span>
+                        </button>
+                        <button id="button-store" className="learn-more" onClick={handleLogout}>
+                            <span className="circle" aria-hidden="true">
+                                <span className="icon arrow"></span>
+                            </span>
+                            <span className="button-text">Sair</span>
                         </button>
                     </main>
                     <div id="page-cadastrar-hotel" >
