@@ -9,6 +9,7 @@ import * as UserActions from '../store/ducks/users/actions';
 import { UserData } from '../store/ducks/users/types';
 import '../styles/global.css';
 import '../styles/pages/cadastrarhotel.css';
+import '../styles/pages/switchBtn.css';
 
 interface Stateprops {
     users: UserData,
@@ -25,6 +26,7 @@ interface Ownprops {
 }
 
 interface Store {
+    [key: string]: any;
     id?: any;
     nome?: any;
     razaosocial?: any;
@@ -55,10 +57,28 @@ interface Store {
     sextaFecha?: any;
     sabadoAbre?: any;
     sabadoFecha?: any;
+    banho?: any;
     images?: [];
 }
 
 type Props = Stateprops & DispatchProps & Ownprops
+
+type Keys = {
+    domingoAbre: any;
+    domingoFecha: any;
+    segundaAbre: any;
+    segundaFecha: any;
+    tercaAbre: any;
+    tercaFecha: any;
+    quartaFecha: any;
+    quartaAbre: any;
+    quintaAbre: any;
+    quintaFecha: any;
+    sextaAbre: any;
+    sextaFecha: any;
+    sabadoAbre: any;
+    sabadoFecha: any;
+}
 
 class CadastrarHotel extends React.Component<Props> {
     state = {
@@ -92,6 +112,7 @@ class CadastrarHotel extends React.Component<Props> {
         sextaFecha: (this.props.data?.sextaFecha) ? this.props.data.sextaFecha : "",
         sabadoAbre: (this.props.data?.sabadoAbre) ? this.props.data.sabadoAbre : "",
         sabadoFecha: (this.props.data?.sabadoFecha) ? this.props.data.sabadoFecha : "",
+        banho: (this.props.data?.banho) ? this.props.data.banho : 0,
         previewImages: (this.props.data?.images) ? this.props.data.images : [],
         images: (this.props.data?.images) ? this.props.data.images : [],
 
@@ -133,12 +154,24 @@ class CadastrarHotel extends React.Component<Props> {
 
         const handleInput = (id: React.FormEvent<HTMLInputElement>) => {
             let field = id.currentTarget.id + 'Check';
-
             this.setState({
                 [field]: checkField(id),
                 [id.currentTarget.id]: id.currentTarget.value
             })
         }
+
+        const handleCheckbox = (id: React.FormEvent<HTMLInputElement>) => {
+            this.setState({
+                [id.currentTarget.id]: (Number(id.currentTarget.checked))
+            })
+        }
+
+        const handleSelect = (id: React.FormEvent<HTMLSelectElement>) => {
+            this.setState({
+                [id.currentTarget.id]: (Number(id.currentTarget.value))
+            })
+        }
+
         const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             if (this.state.nome === "") alert("Campo Nome Fantasia e obrigatorio.")
@@ -190,12 +223,11 @@ class CadastrarHotel extends React.Component<Props> {
             data.append('sextaFecha', this.state.sextaFecha)
             data.append('sabadoAbre', this.state.sabadoAbre)
             data.append('sabadoFecha', this.state.sabadoFecha)
+            data.append('banho', this.state.banho)
 
             this.state.images.forEach(img => {
                 data.append('images', img);
             })
-
-
 
             const url = (this.state.id) ? `/update/stores` : `/cadastro/stores/${this.state.userId}`
             await api.post(url, data, {
@@ -240,7 +272,6 @@ class CadastrarHotel extends React.Component<Props> {
                 return URL.createObjectURL(img);
             })
 
-
             await this.setState({
                 images: selectedImages,
                 previewImages: selectedImagesPreview
@@ -255,7 +286,25 @@ class CadastrarHotel extends React.Component<Props> {
                 previewImages: this.state.previewImages
             })
         }
-        console.log(this.state)
+
+        const handleHourOption = (name: any, key: keyof Keys) => {
+            let hour = [];
+            for (let i = 1; i <= 24; i++) {
+                hour.push(i);
+            }
+            return (
+                <div className="select">
+                    <select name={name} id={key} onChange={handleSelect} value={this.state[key]}>
+                        <option>Fechado</option>
+                        {hour.map(h => {
+                            return <option value={h} key={h}>{h}:00</option>
+                        })}
+                    </select>
+                </div>
+            );
+        }
+
+
 
         return (
             <>
@@ -264,8 +313,6 @@ class CadastrarHotel extends React.Component<Props> {
                     <h1>
                         Formulario de cadastro.
                     </h1>
-
-
                     <div className={"form-box"}>
                         <div>
                             <form className={"form-new-store"} onSubmit={formSubmit}>
@@ -336,6 +383,16 @@ class CadastrarHotel extends React.Component<Props> {
 
 
                                 </div>
+                                <div className="row-banho">
+                                    <label className="switch-label">Banho pet disponivel:</label>
+                                    <div className="onoffswitch">
+                                        <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox" id="banho" tabIndex={1} onChange={handleCheckbox} defaultChecked={this.state.banho} />
+                                        <label className="onoffswitch-label" htmlFor="banho">
+                                            <span className="onoffswitch-inner"></span>
+                                            <span className="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div className="row">
                                     <div className="field-funciona">
                                         <label htmlFor="multi">Importar imagens</label>
@@ -364,44 +421,38 @@ class CadastrarHotel extends React.Component<Props> {
                                         <div>
                                             <div>
                                                 <label htmlFor="horario">Domingo</label>
-                                                <input type="text" name="abre[]" id="domingoAbre" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.domingoAbre} />
-                                                <input type="text" name="fecha[]" id="domingoFecha" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.domingoFecha} />
+                                                {handleHourOption("abre[]", "domingoAbre")}
+                                                {handleHourOption("fecha[]", "domingoFecha")}
                                             </div>
                                             <div>
                                                 <label htmlFor="horario">Segunda</label>
-                                                <input type="text" name="abre[]" id="segundaAbre" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.segundaAbre} />
-                                                <input type="text" name="fecha[]" id="segundaFecha" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.segundaFecha} />
-
+                                                {handleHourOption("abre[]", "segundaAbre")}
+                                                {handleHourOption("fecha[]", "segundaFecha")}
                                             </div>
                                             <div>
                                                 <label htmlFor="horario">Terca</label>
-                                                <input type="text" name="abre[]" id="tercaAbre" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.tercaAbre} />
-                                                <input type="text" name="fecha[]" id="tercaFecha" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.tercaFecha} />
-
+                                                {handleHourOption("abre[]", "tercaAbre")}
+                                                {handleHourOption("fecha[]", "tercaFecha")}
                                             </div>
                                             <div>
                                                 <label htmlFor="horario">Quarta</label>
-                                                <input type="text" name="abre[]" id="quartaAbre" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.quartaAbre} />
-                                                <input type="text" name="fecha[]" id="quartaFecha" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.quartaFecha} />
-
+                                                {handleHourOption("abre[]", "quartaAbre")}
+                                                {handleHourOption("fecha[]", "quartaFecha")}
                                             </div>
                                             <div>
                                                 <label htmlFor="horario">Quinta</label>
-                                                <input type="text" name="abre[]" id="quintaAbre" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.quintaAbre} />
-                                                <input type="text" name="fecha[]" id="quintaFecha" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.quintaFecha} />
-
+                                                {handleHourOption("abre[]", "quintaAbre")}
+                                                {handleHourOption("fecha[]", "quintaFecha")}
                                             </div>
                                             <div>
                                                 <label htmlFor="horario">Sexta</label>
-                                                <input type="text" name="abre[]" id="sextaAbre" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.sextaAbre} />
-                                                <input type="text" name="fecha[]" id="sextaFecha" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.sextaFecha} />
-
+                                                {handleHourOption("abre[]", "sextaAbre")}
+                                                {handleHourOption("fecha[]", "sextaFecha")}
                                             </div>
                                             <div>
                                                 <label htmlFor="horario">Sabado</label>
-                                                <input type="text" name="abre[]" id="sabadoAbre" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.sabadoAbre} />
-                                                <input type="text" name="fecha[]" id="sabadoFecha" className="horario" maxLength={5} placeholder="00:00" onChange={handleInput} value={this.state.sabadoFecha} />
-
+                                                {handleHourOption("abre[]", "sabadoAbre")}
+                                                {handleHourOption("fecha[]", "sabadoFecha")}
                                             </div>
                                         </div>
                                     </div>

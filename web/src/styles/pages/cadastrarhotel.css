@@ -2,6 +2,11 @@ html, body {
     margin: 0;
     height: 100%;
 }
+
+main {
+    width: 30%;
+}
+
 #page-cadastrar-hotel {
     width: 100%;
     z-index: 8;
@@ -335,6 +340,16 @@ html, body {
 .row{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.row-banho{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
 }
 .row-image{
     display: flex;
@@ -347,6 +362,10 @@ html, body {
 
 .field-funciona {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .field-funciona label{
@@ -367,7 +386,7 @@ html, body {
 
 
 .field-funciona div {
-    width: 100%;
+    width: 95%;
     display: flex;
     
     align-items: center;
@@ -376,7 +395,7 @@ html, body {
 .field-funciona div div{
     display: flex;
     flex-direction: column;
-    width: 55%;
+
 }
 .field-funciona input::-webkit-input-placeholder {
     opacity: 1;
@@ -428,6 +447,61 @@ html, body {
     display: none;
 }
 
+
+.select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}    
+.select select {
+        font-family: 'Arial';
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        padding: 8px 15px;
+        outline: 0;
+        border: 1px solid #cccc;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #000000;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+        
+.select select::-ms-expand {
+            display: none;
+}
+.select select:hover,
+.select select:focus {
+    color: #000000;
+    background: #cccccc;
+}
+.select select:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.select_arrow {
+    position: absolute;
+    top: 11px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    border: solid #000000;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+    border-color: #000000;
+}
+.select select:disabled ~ .select_arrow {
+    border-top-color: #000000;
+}
+
   input[type="file"] {
       border: 0;
   }
@@ -448,6 +522,7 @@ html, body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
         margin-bottom: 5px;
     }
     #page-cadastrar-hotel {
@@ -459,7 +534,9 @@ html, body {
     .row {
         flex-direction: column;
     }
-
+    .row-banho{
+        flex-direction: column;
+    }
     .row > .field:first-child{
         margin-right: 0;
     }
