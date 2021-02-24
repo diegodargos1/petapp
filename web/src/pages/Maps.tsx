@@ -71,17 +71,23 @@ function Maps(Props: Component<Props>) {
     const [googleLink, setGoogleLink] = useState('')
     const [latitude] = useState(-23.61172);
     const [longitude] = useState(-46.54690129999999);
-    const options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-    };
+
 
     useEffect(() => {
         let checkLocationSafari = () => {
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0,
+            };
             navigator.geolocation.getCurrentPosition(success, errors, options);
         }
         let checkLocationChrome = () => {
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0,
+            };
             if (navigator.geolocation) {
                 navigator.permissions
                     .query({ name: "geolocation" })
