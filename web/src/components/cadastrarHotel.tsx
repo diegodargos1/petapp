@@ -212,7 +212,7 @@ class CadastrarHotel extends React.Component<Props> {
                     emailTxt: "Email invalido.",
                     emailColor: "red"
                 })
-            } else if (this.state.password != this.state.confirmasenha) {
+            } else if (this.state.password !== this.state.confirmasenha) {
                 this.pwInput.current?.focus()
                 this.setState({
                     passwordTxt: "Favor confirmar senha.",
@@ -346,22 +346,22 @@ class CadastrarHotel extends React.Component<Props> {
             })
         }
 
-        const handleHourOption = (name: any, key: keyof Keys) => {
-            let hour = [];
-            for (let i = 1; i <= 24; i++) {
-                hour.push(i);
-            }
-            return (
-                <div className="select">
-                    <select name={name} id={key} onChange={handleSelect} value={this.state[key]}>
-                        <option>Fechado</option>
-                        {hour.map(h => {
-                            return <option value={h} key={h}>{h}:00</option>
-                        })}
-                    </select>
-                </div>
-            );
-        }
+        // const handleHourOption = (name: any, key: keyof Keys) => {
+        //     let hour = [];
+        //     for (let i = 1; i <= 24; i++) {
+        //         hour.push(i);
+        //     }
+        //     return (
+        //         <div className="select">
+        //             <select name={name} id={key} onChange={handleSelect} value={this.state[key]}>
+        //                 <option>Fechado</option>
+        //                 {hour.map(h => {
+        //                     return <option value={h} key={h}>{h}:00</option>
+        //                 })}
+        //             </select>
+        //         </div>
+        //     );
+        // }
 
 
 

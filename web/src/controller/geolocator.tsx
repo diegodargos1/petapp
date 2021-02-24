@@ -24,7 +24,7 @@ function GeoLocation(props: { latitude: number; longitude: number; handleStore: 
             <Marker position={[props.latitude, props.longitude]}>
             </Marker>
             {
-                (props.markers.info != undefined) ?
+                (props.markers.info !== undefined) ?
 
                     props.markers.info.map((m: { latitude: number; longitude: number; }) => {
                         return (

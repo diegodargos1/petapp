@@ -69,8 +69,8 @@ function Maps(Props: Component<Props>) {
     const [store, setStore] = useState(false);
     const [storeData, setStoreData] = useState(hotel)
     const [googleLink, setGoogleLink] = useState('')
-    const [latitude, setLatitude] = useState(-23.61172);
-    const [longitude, setLongitude] = useState(-46.54690129999999);
+    const [latitude] = useState(-23.61172);
+    const [longitude] = useState(-46.54690129999999);
     const options = {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -106,7 +106,7 @@ function Maps(Props: Component<Props>) {
             console.warn(`ERROR(${err.code}): ${err.message}`);
         }
         let success = async (pos: { coords: any; }) => {
-            let crd = pos.coords;
+            // let crd = pos.coords;
 
             // await setLatitude(crd.latitude);
             // await setLongitude(crd.longitude);
