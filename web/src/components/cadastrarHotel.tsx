@@ -63,22 +63,22 @@ interface Store {
 
 type Props = Stateprops & DispatchProps & Ownprops
 
-type Keys = {
-    domingoAbre: any;
-    domingoFecha: any;
-    segundaAbre: any;
-    segundaFecha: any;
-    tercaAbre: any;
-    tercaFecha: any;
-    quartaFecha: any;
-    quartaAbre: any;
-    quintaAbre: any;
-    quintaFecha: any;
-    sextaAbre: any;
-    sextaFecha: any;
-    sabadoAbre: any;
-    sabadoFecha: any;
-}
+// type Keys = {
+//     domingoAbre: any;
+//     domingoFecha: any;
+//     segundaAbre: any;
+//     segundaFecha: any;
+//     tercaAbre: any;
+//     tercaFecha: any;
+//     quartaFecha: any;
+//     quartaAbre: any;
+//     quintaAbre: any;
+//     quintaFecha: any;
+//     sextaAbre: any;
+//     sextaFecha: any;
+//     sabadoAbre: any;
+//     sabadoFecha: any;
+// }
 
 class CadastrarHotel extends React.Component<Props> {
     private pwInput: React.RefObject<HTMLInputElement>;
@@ -191,11 +191,11 @@ class CadastrarHotel extends React.Component<Props> {
             })
         }
 
-        const handleSelect = (id: React.FormEvent<HTMLSelectElement>) => {
-            this.setState({
-                [id.currentTarget.id]: (Number(id.currentTarget.value))
-            })
-        }
+        // const handleSelect = (id: React.FormEvent<HTMLSelectElement>) => {
+        //     this.setState({
+        //         [id.currentTarget.id]: (Number(id.currentTarget.value))
+        //     })
+        // }
 
         const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();

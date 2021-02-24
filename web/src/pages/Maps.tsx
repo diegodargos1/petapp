@@ -126,7 +126,7 @@ function Maps(Props: Component<Props>) {
             checkLocationSafari()
         }
         getStores()
-    }, [latitude]);
+    }, [latitude, longitude, options]);
 
     const handleMenu = () => {
         setMenu(!menu);
