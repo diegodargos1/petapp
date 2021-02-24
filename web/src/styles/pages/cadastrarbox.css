@@ -14,11 +14,12 @@
     flex-direction: column;
     display: flex;
     width: 80%;
+    padding-top: 25px;
 }
 
 #page-cadastrar-box .content-wrapper-cadastrar {
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     height: 100%;
     /* max-height: 90%; */
     position: relative;
@@ -28,6 +29,7 @@
     margin-bottom: 20px;
     background-color: white;
     border-radius: 15px;
+    box-shadow: 10px 12px #0000002e;
 }
 
 #page-cadastrar-box .content-wrapper-cadastrar .main-box h1{
@@ -65,7 +67,6 @@
     right: 0;
     bottom: 0;
 
-    width: 80px;
     height: 80px;
 
     background: #ffd666;

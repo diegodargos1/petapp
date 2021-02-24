@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from 'redux';
 import logoImg from '../assets/images/boxicon.png';
-import CadastrarBox from '../components/cadastrarBox';
+import CadastrarHotel from '../components/cadastrarHotel';
 import api from '../services/api';
 import { ApplicationState } from '../store';
 import * as UserActions from '../store/ducks/users/actions';
@@ -27,7 +27,8 @@ type Props = Stateprops & DispatchProps & Ownprops
 class LandingStore extends Component<Props> {
     state = {
         loading: false,
-        cadastrar: false
+        cadastrar: false,
+        data: {},
     }
 
     async componentDidMount() {
@@ -71,9 +72,10 @@ class LandingStore extends Component<Props> {
                             Cadastre-se com poucos cliques.
                         </p>
                     </main>
-                    <div id="page-cadastrar-box" >
+                    <div id="page-cadastrar-hotel" >
                         <div className="content-wrapper-cadastrar" >
-                            <CadastrarBox display={this.state.cadastrar} loading={handleLoading} redirect={redirect}></CadastrarBox>
+                            {/* <CadastrarBox display={this.state.cadastrar} loading={handleLoading} redirect={redirect}></CadastrarBox> */}
+                            <CadastrarHotel loading={handleLoading} redirect={redirect} data={this.state.data}></CadastrarHotel>
                         </div>
                     </div>
                 </div>

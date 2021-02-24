@@ -11,7 +11,6 @@
     width: 0px;
     opacity: 0;
     height: 100%;
-    
 
     background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
     padding: 80px;
@@ -33,12 +32,11 @@
     height: 100%;
     
 
-    background: #F8F8F8 !important;
-    padding: 10px;
+    background: linear-gradient(329.5deg, #29B6D1 0%, #00C7C7 100% );
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -ms-transition: all 0.5s ease-in-out;
@@ -46,8 +44,64 @@
     transition: all 0.5s ease-in-out;
 }
 
+#store-detail .details-image {
+    overflow: hidden;
+    width: 100%;
+    height: 290px;
+    position: relative;
+    display: block;
+}
+#store-detail .details-image img{
+    position: relative;
+    max-height: 300px;
+    width: 100%;
+    z-index: 1;
+}
+
+
+
+.details-main{
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid;
+}
+
+.details-main div{
+    margin-top: 15px;
+}
+
+.details-address a{
+    margin-left: 10px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
+
+.details-address{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.details-horario{
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    align-items: center;
+}
+
+.details-horario ul {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.close-cadastro {
+    z-index: 2;
+}
+
 #page-map .asideOn{
-    width: 440px;
+    width: 400px;
     opacity: 1;
     z-index: 56;
     -webkit-transition: all 0.5s ease-in-out;
@@ -69,15 +123,14 @@
 }
 
 #page-map aside h2 {
-    font-size: 40px;
-    font-weight: 800;
-    line-height: 42px;
-    margin-top: 64px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 32px;
+    margin: 20px 15px;
 }
 
 #page-map aside p {
     line-height: 28px;
-    margin-top: 24px;
 }
 
 #page-map aside footer {
@@ -138,6 +191,12 @@
         align-items: center;
 
         transition: background-color 0.2s;
+    }
+    #store-detail .details-image img{
+        width: 340px;
+        top: 0;
+        left: 0;
+        transform: translateY(0) translateX(0);
     }
 
     #page-map .asideOn{

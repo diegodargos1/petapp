@@ -2,14 +2,13 @@ import React from 'react';
 import { FiEye } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import logoImg from '../assets/images/boxicon.png';
-import LoginFacebook from '../components/facebook';
 import api from '../services/api';
 import { ApplicationState } from '../store';
 import * as UserActions from '../store/ducks/users/actions';
 import { UserData } from '../store/ducks/users/types';
 import '../styles/global.css';
 import '../styles/pages/cadastrar.css';
+import LoginFacebook from './facebook';
 
 
 interface Stateprops {
@@ -26,9 +25,11 @@ interface Ownprops {
     redirect: Function
 }
 
+
+
 type Props = Stateprops & DispatchProps & Ownprops
 
-class Cadastrar extends React.Component<Props> {
+class Login extends React.Component<Props> {
     private pwInput: React.RefObject<HTMLInputElement>;
     private nomeInput: React.RefObject<HTMLInputElement>;
     private emailInput: React.RefObject<HTMLInputElement>;
@@ -57,6 +58,40 @@ class Cadastrar extends React.Component<Props> {
 
 
     render() {
+        const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            if (!this.state.passwordCheck) {
+                this.pwInput.current?.focus()
+                this.setState({
+                    passwordTxt: "Senha incorreta.",
+                    passwordColor: "red"
+                })
+            } else if (!this.state.emailCheck) {
+                this.emailInput.current?.focus()
+                this.setState({
+                    emailTxt: "Email invalido.",
+                    emailColor: "red"
+                })
+            } else {
+                this.props.loading();
+                await api.post(`/users/login`, this.state, {
+                    headers: { "Access-Control-Allow-Origin": "*" }
+                })
+                    .then(res => {
+                        this.props.loading();
+                        if (res.data.error) {
+                            alert(res.data.msg);
+                        } else {
+                            localStorage.setItem('user', res.data.info.email);
+                            localStorage.setItem('userName', res.data.info.name);
+                            localStorage.setItem('userId', res.data.info.id);
+                            this.props.redirect()
+                        }
+
+                    })
+            }
+        }
+
         const handleInput = (id: React.FormEvent<HTMLInputElement>) => {
             if (id.currentTarget.id === "email") {
                 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -77,43 +112,6 @@ class Cadastrar extends React.Component<Props> {
                 [id.currentTarget.id]: id.currentTarget.value
             })
         }
-        const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            if (!this.state.passwordCheck) {
-                this.pwInput.current?.focus()
-                this.setState({
-                    passwordTxt: "A senha deve ter letras, numeros, minimo de 6 digitos e maximo de 10.",
-                    passwordColor: "red"
-                })
-            } else if (!this.state.emailCheck) {
-                this.emailInput.current?.focus()
-                this.setState({
-                    emailTxt: "Email invalido.",
-                    emailColor: "red"
-                })
-            } else if (this.state.nome === "") {
-                this.nomeInput.current?.focus()
-                this.setState({
-                    nomeColor: "red"
-                })
-            } else {
-                this.setState({
-                    loading: true
-                })
-                await api.post(`/users`, this.state, {
-                    headers: { "Access-Control-Allow-Origin": "*" }
-                })
-                    .then(res => {
-                        this.setState({
-                            loading: false
-                        })
-                        alert(res.data.msg);
-                    })
-                this.setState({
-                    loading: false
-                })
-            }
-        }
 
         const handlePviewer = () => {
             this.setState({ pViewer: !this.state.pViewer })
@@ -121,14 +119,8 @@ class Cadastrar extends React.Component<Props> {
 
         return (
             <>
-                <img src={logoImg} alt="logo" className="logo-cadastrar" />
                 <main>
-                    <h1>
-                        Cadastre-se
-                    </h1>
-                    <p>
-                        E rapido e facil.
-                    </p>
+
                     <div className={"div-face"}>
                         <LoginFacebook loading={this.props.loading} redirect={this.props.redirect} />
                     </div>
@@ -136,10 +128,6 @@ class Cadastrar extends React.Component<Props> {
                     <div className={"form-box"}>
                         <div>
                             <form className={"form-signin"} onSubmit={formSubmit}>
-                                <div className="field">
-                                    <input type="text" ref={this.nomeInput} name="nome" id="nome" placeholder="Seu nome" onChange={handleInput} />
-                                    <label style={{ color: this.state.nomeColor }} htmlFor="nome">Nome*</label>
-                                </div>
                                 <div className="field">
                                     <input type="text" ref={this.emailInput} name="email" id="email" placeholder="email@email.com" onChange={handleInput} />
                                     <label style={{ color: this.state.emailColor }} htmlFor="email">{this.state.emailTxt}</label>
@@ -155,7 +143,7 @@ class Cadastrar extends React.Component<Props> {
                                 </div>
                                 <div className="box-buttons">
                                     <button className="create-store-register">
-                                        Cadastrar
+                                        Entrar
                                     </button>
                                 </div>
                             </form>
@@ -178,4 +166,4 @@ const mapStateToProps = (state: ApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(UserActions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cadastrar);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

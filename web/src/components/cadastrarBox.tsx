@@ -3,7 +3,6 @@ import { FiEye } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import logoImg from '../assets/images/boxicon.png';
-import LoginFacebook from '../components/facebook';
 import api from '../services/api';
 import { ApplicationState } from '../store';
 import * as UserActions from '../store/ducks/users/actions';
@@ -193,9 +192,9 @@ class CadastrarBox extends React.Component<Props> {
                     <p>
                         E rapido e facil.
                     </p>
-                    <div className={"div-face"}>
-                        <LoginFacebook submit={handleEntrarFace} />
-                    </div>
+                    {/* <div className={"div-face"}>
+                        <LoginFacebook loading={this.props.loading} redirect={this.props.redirect} />
+                    </div> */}
 
                     <div className={"form-box"}>
                         <div className="box-buttons" style={{ display: (this.state.entrar || this.state.cadastrar) ? "none" : "flex" }}>

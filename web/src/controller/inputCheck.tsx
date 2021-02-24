@@ -18,6 +18,15 @@ export const checkField = (text: React.FormEvent<HTMLInputElement>) => {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(text.currentTarget.value);
     }
+    if (text.currentTarget.id === "email") {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(text.currentTarget.value);
+    }
+
+    if (text.currentTarget.id === "password") {
+        const re = /^(?=.*\d+)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,10}$/
+        return re.test(text.currentTarget.value);
+    }
 }
 
 export const handleMask = (id: React.FormEvent<HTMLInputElement>) => {

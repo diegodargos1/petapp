@@ -13,6 +13,47 @@
 #page-cadastrar .logo-cadastrar {
     margin-top: 10px;
 }
+
+#page-cadastrar .cadastrar-login-box {
+    width: 100%;
+    max-width: 500px;
+    max-height: 90%;
+
+    margin: 10px;
+    padding: 10px;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
+}
+
+#page-cadastrar .cadastrar-login-box main {
+    flex-direction: column;
+    display: flex;
+    width: 80%;
+}
+
+#page-cadastrar .cadastrar-login-box main h1{
+    color: rgb(0, 0, 0);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 70px;
+    text-align: center;
+}
+
+#page-cadastrar .cadastrar-login-box main p{
+    color: rgb(0, 0, 0);
+    margin-top: 0px;
+    font-size: 24px; 
+    line-height: 0px;
+    text-align: center;
+}
+
 #page-cadastrar .content-wrapper-cadastrar main {
     flex-direction: column;
     display: flex;

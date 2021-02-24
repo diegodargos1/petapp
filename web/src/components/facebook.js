@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import api from '../services/api';
 
 export default class LoginFacebook extends Component
 {
@@ -15,6 +16,29 @@ export default class LoginFacebook extends Component
     render ()
     {
         let facebookData;
+        const submit = async ( data ) =>
+        {
+            this.props.loading();
+            await api.post( `/users/face`, data, {
+                headers: { "Access-Control-Allow-Origin": "*" }
+            } )
+                .then( res =>
+                {
+                    this.props.loading();
+                    if ( res.data.error )
+                    {
+                        alert( res.data.msg );
+                    } else
+                    {
+                        localStorage.setItem( 'user', res.data.info.email );
+                        localStorage.setItem( 'userName', res.data.info.name );
+                        localStorage.setItem( 'userId', res.data.info.id );
+                        this.props.redirect();
+                    }
+                } );
+        };
+
+
         const responseFacebook = ( response ) =>
         {
             this.setState( {
@@ -25,7 +49,7 @@ export default class LoginFacebook extends Component
                 id: response.id,
                 accessToken: response.accessToken
             } );
-            this.props.submit( this.state );
+            submit( this.state );
         };
 
         const componentClicked = ( response ) =>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { FiX } from 'react-icons/fi';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from 'redux';
 import logoImg from '../assets/images/boxicon.png';
 import Cadastrar from '../components/cadastrar';
+import Login from '../components/login';
 import { ApplicationState } from '../store';
 import * as UserActions from '../store/ducks/users/actions';
 import { UserData } from '../store/ducks/users/types';
@@ -19,32 +20,55 @@ interface DispatchProps {
     loadRequest(): void
 }
 
-interface Ownprops {
+interface Ownprops extends RouteComponentProps<any> {
 
 }
 type Props = Stateprops & DispatchProps & Ownprops
 class Landing extends Component<Props> {
     state = {
         loading: false,
-        cadastrar: false
+        cadastrar: false,
+        login: false
     }
 
     render() {
         const { users } = this.props
+        const handleLoading = () => {
+            this.setState({
+                loading: !this.state.loading
+            })
+        }
+        const redirect = () => {
+            this.props.history.push("/Dashboard");
+        }
 
-        //const cadastro = (users.email == "") ? `` : '';
+
         const handleCadastrar = () => {
             this.setState({
                 cadastrar: !this.state.cadastrar
             })
         }
+
+        const handleLogin = () => {
+            this.setState({
+                login: !this.state.login
+            })
+        }
         return (
             <div id="page-landing">
-                <div className="loadingDiv" style={{ display: (this.state.loading ? "block" : "none") }}></div>
+                <div className="loading-box" style={{ display: (this.state.loading ? "flex" : "none") }}>
+                    <div className="loadingDiv" ></div>
+                </div>
                 <div id="page-cadastrar" style={{ display: (this.state.cadastrar) ? "flex" : "none" }} >
-                    <div className="content-wrapper-cadastrar">
+                    <div className="cadastrar-login-box">
                         <div className="close-cadastro" onClick={handleCadastrar}><FiX size={26} color="rgba(0,0,0,0.6)" /></div>
-                        <Cadastrar display={this.state.cadastrar}></Cadastrar>
+                        <Cadastrar display={this.state.cadastrar} loading={handleLoading} redirect={redirect}></Cadastrar>
+                    </div>
+                </div>
+                <div id="page-cadastrar" style={{ display: (this.state.login) ? "flex" : "none" }} >
+                    <div className="cadastrar-login-box">
+                        <div className="close-cadastro" onClick={handleLogin}><FiX size={26} color="rgba(0,0,0,0.6)" /></div>
+                        <Login display={this.state.login} loading={handleLoading} redirect={redirect}></Login>
                     </div>
                 </div>
                 <div className="content-wrapper">
@@ -65,7 +89,7 @@ class Landing extends Component<Props> {
                         </Link> */}
                             <ul>
                                 <li>
-                                    <div className="loginLink"  >
+                                    <div className="loginLink" onClick={handleLogin}>
                                         Entrar
                                     </div>
                                 </li>

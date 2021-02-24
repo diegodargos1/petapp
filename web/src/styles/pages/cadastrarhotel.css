@@ -14,7 +14,7 @@ main {
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #page-cadastrar-hotel .logo-cadastrar {
@@ -28,14 +28,15 @@ main {
 
 #page-cadastrar-hotel .content-wrapper-cadastrar {
     width: 100%;
-    max-width: 900px;
-    height: 95%;
+    max-width: 700px;
+    /* height: 95%; */
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: white;
     border-radius: 15px;
+    padding-top: 25px;
 }
 
 #page-cadastrar-hotel .content-wrapper-cadastrar .main-box h1{

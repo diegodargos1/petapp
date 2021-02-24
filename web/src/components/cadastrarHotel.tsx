@@ -81,6 +81,17 @@ type Keys = {
 }
 
 class CadastrarHotel extends React.Component<Props> {
+    private pwInput: React.RefObject<HTMLInputElement>;
+    private nomeInput: React.RefObject<HTMLInputElement>;
+    private emailInput: React.RefObject<HTMLInputElement>;
+
+    constructor(props: Props) {
+        super(props);
+        this.pwInput = React.createRef();
+        this.nomeInput = React.createRef();
+        this.emailInput = React.createRef();
+    }
+
     state = {
         id: (this.props.data?.id) ? this.props.data.id : "",
         nome: (this.props.data?.nome) ? this.props.data.nome : "",
@@ -126,6 +137,20 @@ class CadastrarHotel extends React.Component<Props> {
         estadoCheck: false,
         ruaCheck: false,
         emailCheck: false,
+
+        confirmasenha: "",
+        emailTxt: "Email*",
+        emailColor: "black",
+        password: "",
+        passwordCheck: false,
+        passwordColor: "black",
+        passwordTxt: "Senha*",
+        nomeColor: "black",
+        pViewer: false,
+        textInput: React.createRef(),
+        loading: false,
+        cadastrar: false,
+        entrar: false
     }
 
     render() {
@@ -174,6 +199,39 @@ class CadastrarHotel extends React.Component<Props> {
 
         const formSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
+            let loginCreated = false;
+            if (!this.state.passwordCheck) {
+                this.pwInput.current?.focus()
+                this.setState({
+                    passwordTxt: "A senha deve ter letras, numeros, minimo de 6 digitos e maximo de 10.",
+                    passwordColor: "red"
+                })
+            } else if (!this.state.emailCheck) {
+                this.emailInput.current?.focus()
+                this.setState({
+                    emailTxt: "Email invalido.",
+                    emailColor: "red"
+                })
+            } else if (this.state.password != this.state.confirmasenha) {
+                this.pwInput.current?.focus()
+                this.setState({
+                    passwordTxt: "Favor confirmar senha.",
+                    passwordColor: "red"
+                })
+            } else {
+                await api.post(`/users`, this.state, {
+                    headers: { "Access-Control-Allow-Origin": "*" }
+                })
+                    .then(res => {
+                        loginCreated = true;
+                        localStorage.setItem('user', res.data.info.email);
+                        localStorage.setItem('userName', res.data.info.nome);
+                        localStorage.setItem('userId', res.data.info.id);
+                        this.setState({ userId: res.data.info.id })
+                    })
+            }
+
+
             if (this.state.nome === "") alert("Campo Nome Fantasia e obrigatorio.")
             else if (this.state.razao === "") alert("Campo Razao Social e obrigatorio.")
             else if (this.state.inscricao === "") alert("Campo Inscricao Estadual e obrigatorio.")
@@ -183,6 +241,7 @@ class CadastrarHotel extends React.Component<Props> {
             else if (this.state.estado === "") alert("Campo Estado e obrigatorio.")
             else if (this.state.rua === "") alert("Campo Rua e obrigatorio.")
             else if (this.state.numero === "") alert("Campo Numero e obrigatorio.")
+            else if (!loginCreated) alert("Erro ao criar usuario e senha.")
             else {
                 this.props.loading();
                 await getLatLon();
@@ -316,7 +375,20 @@ class CadastrarHotel extends React.Component<Props> {
                     <div className={"form-box"}>
                         <div>
                             <form className={"form-new-store"} onSubmit={formSubmit}>
-
+                                <div className="column">
+                                    <div className="field">
+                                        <input type="text" ref={this.emailInput} name="email" id="email" placeholder="email@email.com" onChange={handleInput} />
+                                        <label style={{ color: this.state.emailColor }} htmlFor="email">{this.state.emailTxt}</label>
+                                    </div>
+                                    <div className="field">
+                                        <input type={this.state.pViewer ? "text" : "password"} ref={this.pwInput} name="password" id="password" placeholder="******" onChange={handleInput} />
+                                        <label style={{ color: this.state.passwordColor }} htmlFor="password">{this.state.passwordTxt}</label>
+                                    </div>
+                                    <div className="field">
+                                        <input type="password" name="confirmasenha" id="confirmasenha" placeholder="******" onChange={handleInput} />
+                                        <label htmlFor="confirmasenha">Confirmar Senha*</label>
+                                    </div>
+                                </div>
                                 <div className="row">
                                     <div className="field">
                                         <input type="text" name="nome" id="nome" placeholder="Nome Fantasia" onChange={handleInput} value={this.state.nome} />
@@ -338,10 +410,6 @@ class CadastrarHotel extends React.Component<Props> {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="field">
-                                        <input type="text" name="email" id="email" placeholder="email@email.com" onChange={handleInput} value={this.state.email} />
-                                        <label htmlFor="email">Email</label>
-                                    </div>
                                     <div className="field">
                                         <input type="text" name="telefone" id="telefone" placeholder="(00)0000-0000" maxLength={12} onChange={handleInput} onFocus={handleLimpa} onBlur={handleMask} value={this.state.telefone} />
                                         <label htmlFor="telefone">Telefone</label>
@@ -415,7 +483,7 @@ class CadastrarHotel extends React.Component<Props> {
                                         <input multiple onChange={handleImage} type="file" id="image[]" />
                                     </div>
                                 </div>
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="field-funciona">
                                         <label htmlFor="horario">Horario de funcionamento*</label>
                                         <div>
@@ -456,7 +524,7 @@ class CadastrarHotel extends React.Component<Props> {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="box-buttons">
                                     <button className="create-store-register">
                                         Salvar
