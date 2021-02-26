@@ -184,11 +184,11 @@ class CadastrarHotel extends React.Component<Props> {
             })
         }
 
-        const handleCheckbox = (id: React.FormEvent<HTMLInputElement>) => {
-            this.setState({
-                [id.currentTarget.id]: (Number(id.currentTarget.checked))
-            })
-        }
+        // const handleCheckbox = (id: React.FormEvent<HTMLInputElement>) => {
+        //     this.setState({
+        //         [id.currentTarget.id]: (Number(id.currentTarget.checked))
+        //     })
+        // }
 
         // const handleSelect = (id: React.FormEvent<HTMLSelectElement>) => {
         //     this.setState({
@@ -322,28 +322,28 @@ class CadastrarHotel extends React.Component<Props> {
                 });
         }
 
-        const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-            if (!e.target.files) return;
-            const selectedImages = Array.from(e.target.files).concat(this.state.images);
+        // const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        //     if (!e.target.files) return;
+        //     const selectedImages = Array.from(e.target.files).concat(this.state.images);
 
-            const selectedImagesPreview = selectedImages.map(img => {
-                return URL.createObjectURL(img);
-            })
+        //     const selectedImagesPreview = selectedImages.map(img => {
+        //         return URL.createObjectURL(img);
+        //     })
 
-            await this.setState({
-                images: selectedImages,
-                previewImages: selectedImagesPreview
-            })
-        }
+        //     await this.setState({
+        //         images: selectedImages,
+        //         previewImages: selectedImagesPreview
+        //     })
+        // }
 
-        const handleDeleteImg = (img: any) => {
-            this.state.images.splice(img, 1)
-            this.state.previewImages.splice(img, 1)
-            this.setState({
-                images: this.state.images,
-                previewImages: this.state.previewImages
-            })
-        }
+        // const handleDeleteImg = (img: any) => {
+        //     this.state.images.splice(img, 1)
+        //     this.state.previewImages.splice(img, 1)
+        //     this.setState({
+        //         images: this.state.images,
+        //         previewImages: this.state.previewImages
+        //     })
+        // }
 
         // const handleHourOption = (name: any, key: keyof Keys) => {
         //     let hour = [];
