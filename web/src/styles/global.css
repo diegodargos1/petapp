@@ -21,7 +21,7 @@ body, input, button, textarea{
 }
 .loading-box{
     width: 100vw;
-    height: 100vh;
+    height: 110vh;
     display: flex;
     position: absolute;
     flex-direction: column;
@@ -29,6 +29,7 @@ body, input, button, textarea{
     align-items: center;
     background-color: rgba(255, 255, 255, 0.399);
     z-index: 99;
+    top: 0;
 }
 .loadingDiv{
     height: 25vh;

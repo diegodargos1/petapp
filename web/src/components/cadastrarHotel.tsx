@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiPlus, FiX } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { checkField, handleMask } from '../controller/inputCheck';
@@ -451,7 +450,7 @@ class CadastrarHotel extends React.Component<Props> {
 
 
                                 </div>
-                                <div className="row-banho">
+                                {/* <div className="row-banho">
                                     <label className="switch-label">Banho pet disponivel:</label>
                                     <div className="onoffswitch">
                                         <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox" id="banho" tabIndex={1} onChange={handleCheckbox} defaultChecked={this.state.banho} />
@@ -460,8 +459,8 @@ class CadastrarHotel extends React.Component<Props> {
                                             <span className="onoffswitch-switch"></span>
                                         </label>
                                     </div>
-                                </div>
-                                <div className="row">
+                                </div> */}
+                                {/* <div className="row">
                                     <div className="field-funciona">
                                         <label htmlFor="multi">Importar imagens</label>
                                         <div className="images-container">
@@ -482,7 +481,7 @@ class CadastrarHotel extends React.Component<Props> {
                                         </div>
                                         <input multiple onChange={handleImage} type="file" id="image[]" />
                                     </div>
-                                </div>
+                                </div> */}
                                 {/* <div className="row">
                                     <div className="field-funciona">
                                         <label htmlFor="horario">Horario de funcionamento*</label>

@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from 'redux';
 import logoImg from '../assets/images/boxicon.png';
+import clients from '../assets/images/clients.png';
+import controle from '../assets/images/control.png';
+import pawn from '../assets/images/pawnbg.png';
+import sales from '../assets/images/sales.png';
 import CadastrarHotel from '../components/cadastrarHotel';
 import api from '../services/api';
 import { ApplicationState } from '../store';
@@ -57,30 +61,63 @@ class LandingStore extends Component<Props> {
         }
 
         return (
-            <div id="page-landingstore">
-                <div className="loading-box" style={{ display: (this.state.loading ? "flex" : "none") }}>
-                    <div className="loadingDiv" ></div>
-                </div>
+            <>
+                <div id="page-landingstore">
+                    <div className="loading-box" style={{ display: (this.state.loading ? "flex" : "none") }}>
+                        <div className="loadingDiv" ></div>
+                    </div>
 
-                <div className="content-wrapper">
-                    <main >
-                        <img src={logoImg} alt="logo" className="logo" />
-                        <h1>
-                            Coloque seu estabelecimento no DogMap.
+                    <div className="content-wrapper">
+                        <main >
+                            <img src={logoImg} alt="logo" className="logo" />
+                            <h1>
+                                Coloque seu estabelecimento no DogMap.
                         </h1>
-                        <p>
-                            Cadastre-se com poucos cliques.
+                            <p>
+                                Cadastre-se com poucos cliques.
                         </p>
+                        </main>
+                        <div id="page-cadastrar-hotel" >
+                            <div className="content-wrapper-cadastrar" >
+                                {/* <CadastrarBox display={this.state.cadastrar} loading={handleLoading} redirect={redirect}></CadastrarBox> */}
+                                <CadastrarHotel loading={handleLoading} redirect={redirect} data={this.state.data}></CadastrarHotel>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="pawns" >
+                        <img src={pawn} alt="pawn" />
+                    </div>
+
+
+                </div >
+                <div className="descricao-dogmap">
+                    <main >
+                        <h2>
+                            Por que usar o DogMap?
+                        </h2>
                     </main>
-                    <div id="page-cadastrar-hotel" >
-                        <div className="content-wrapper-cadastrar" >
-                            {/* <CadastrarBox display={this.state.cadastrar} loading={handleLoading} redirect={redirect}></CadastrarBox> */}
-                            <CadastrarHotel loading={handleLoading} redirect={redirect} data={this.state.data}></CadastrarHotel>
+                    <div>
+                        <div>
+                            <div>
+                                <h3>+ Clientes</h3>
+                                <img src={clients} alt="clientes" />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>+ Vendas</h3>
+                                <img src={sales} alt="vendas" />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>+ Controle</h3>
+                                <img src={controle} alt="controle" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div >
-
+            </>
         );
     }
 }
