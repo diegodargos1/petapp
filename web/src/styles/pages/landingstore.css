@@ -273,6 +273,10 @@ li {
         grid-template-rows: auto auto auto;
         grid-template-columns: none;
     }
+    .descricao-dogmap div div div{
+        margin-bottom: 15px;
+    }
+
     .descricao-dogmap main{
         color: white;
     }
