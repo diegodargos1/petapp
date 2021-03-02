@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FiX } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -32,7 +33,9 @@ class LandingStore extends Component<Props> {
     state = {
         loading: false,
         cadastrar: false,
+        modal: false,
         data: {},
+        modalTxt: ""
     }
 
     async componentDidMount() {
@@ -56,6 +59,12 @@ class LandingStore extends Component<Props> {
             })
         }
 
+        const handleModal = () => {
+            this.setState({
+                modal: !this.state.modal,
+            })
+        }
+
         const redirect = () => {
             this.props.history.push("/Dashboard");
         }
@@ -65,6 +74,13 @@ class LandingStore extends Component<Props> {
                 <div id="page-landingstore">
                     <div className="loading-box" style={{ display: (this.state.loading ? "flex" : "none") }}>
                         <div className="loadingDiv" ></div>
+                    </div>
+                    <div className="loading-box" style={{ display: (this.state.modal ? "flex" : "none") }} onClick={handleModal}>
+                        <div className="modalDiv" >
+                            <div className="close" onClick={handleModal}><FiX size={25} /></div>
+                            <img src={logoImg} alt="logo" className="logo" />
+                            <h3>Obrigado, o seu cadastro foi enviado para analise e a nossa equipe entrara em contato.</h3>
+                        </div>
                     </div>
 
                     <div className="content-wrapper">
@@ -80,7 +96,7 @@ class LandingStore extends Component<Props> {
                         <div id="page-cadastrar-hotel" >
                             <div className="content-wrapper-cadastrar" >
                                 {/* <CadastrarBox display={this.state.cadastrar} loading={handleLoading} redirect={redirect}></CadastrarBox> */}
-                                <CadastrarHotel loading={handleLoading} redirect={redirect} data={this.state.data}></CadastrarHotel>
+                                <CadastrarHotel modal={handleModal} loading={handleLoading} redirect={redirect} data={this.state.data}></CadastrarHotel>
                             </div>
                         </div>
                     </div>

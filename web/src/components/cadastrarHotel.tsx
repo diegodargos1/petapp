@@ -20,6 +20,7 @@ interface DispatchProps {
 
 interface Ownprops {
     loading: Function
+    modal: Function
     redirect: Function
     data?: Store
 }
@@ -246,7 +247,6 @@ class CadastrarHotel extends React.Component<Props> {
                 await getLatLon();
                 await postForm();
                 this.props.loading();
-
             }
         }
 
@@ -292,7 +292,12 @@ class CadastrarHotel extends React.Component<Props> {
                 headers: { "Access-Control-Allow-Origin": "*" }
             })
                 .then(res => {
-                    alert(res.data.msg);
+                    if (!res.data.error) {
+                        this.props.modal();
+                    } else {
+                        alert(res.data.msg);
+                    }
+
                 }).catch(error => {
                     console.log(error)
                     return false;

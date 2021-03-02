@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FiX } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { bindActionCreators, Dispatch } from 'redux';
@@ -31,6 +32,8 @@ class Dashboard extends Component<Props> {
         form: true,
         lista: false,
         data: {},
+        modal: false,
+        modalTxt: ""
     }
 
     async componentDidMount() {
@@ -67,6 +70,12 @@ class Dashboard extends Component<Props> {
             localStorage.clear();
             this.props.history.push("/");
         }
+        const handleModal = (t: any) => {
+            this.setState({
+                modal: !this.state.modal,
+                modalTxt: t
+            })
+        }
 
         const redirect = () => {
             this.props.history.push("/");
@@ -76,6 +85,13 @@ class Dashboard extends Component<Props> {
             <div id="page-landingstore">
                 <div className="loading-box" style={{ display: (this.state.loading ? "flex" : "none") }}>
                     <div className="loadingDiv" ></div>
+                </div>
+                <div className="loading-box" style={{ display: (this.state.modal ? "flex" : "none") }} onClick={handleModal}>
+                    <div className="modalDiv" >
+                        <div className="close" onClick={handleModal}><FiX size={25} /></div>
+                        <img src={logoImg} alt="logo" className="logo" />
+                        <h3>{this.state.modalTxt}</h3>
+                    </div>
                 </div>
 
                 <div className="content-wrapper-dashboard">
@@ -108,7 +124,7 @@ class Dashboard extends Component<Props> {
                     </main>
                     <div id="page-cadastrar-hotel" >
                         <div className="content-wrapper-cadastrar" >
-                            {(this.state.form) ? <CadastrarHotel loading={handleLoading} redirect={redirect} data={this.state.data}></CadastrarHotel> : ""}
+                            {(this.state.form) ? <CadastrarHotel modal={handleModal} loading={handleLoading} redirect={redirect} data={this.state.data}></CadastrarHotel> : ""}
                             {(this.state.lista) ? <ListaHoteisUser loading={handleLoading} redirect={redirect} edit={handleForm}></ListaHoteisUser> : ""}
 
                         </div>

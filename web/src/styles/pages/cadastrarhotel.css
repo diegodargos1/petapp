@@ -202,7 +202,7 @@ main {
   #page-cadastrar-hotel .create-store {
     border: 0px;
     padding: 20px;
-    background: #15c3d6;
+    background: #16c79a;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -239,7 +239,7 @@ main {
     border: 0px;
     padding: 20px;
     height: 64px;
-    background: #15c3d6;
+    background: #16c79a;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -249,7 +249,7 @@ main {
 }
 
 #page-cadastrar-hotel  .create-store-register:hover {
-    background: #17d6eb;
+    background: #38dfb5;
 }
 
 #page-cadastrar-hotel  .create-store-back {
