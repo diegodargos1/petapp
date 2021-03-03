@@ -224,10 +224,12 @@ class CadastrarHotel extends React.Component<Props> {
                 })
                     .then(res => {
                         loginCreated = true;
-                        localStorage.setItem('user', res.data.info.email);
-                        localStorage.setItem('userName', res.data.info.nome);
-                        localStorage.setItem('userId', res.data.info.id);
-                        this.setState({ userId: res.data.info.id })
+                        if (!res.data.error) {
+                            localStorage.setItem('user', res.data.info.email);
+                            localStorage.setItem('userName', res.data.info.nome);
+                            localStorage.setItem('userId', res.data.info.id);
+                            this.setState({ userId: res.data.info.id })
+                        }
                     })
             }
 
@@ -294,6 +296,7 @@ class CadastrarHotel extends React.Component<Props> {
                 .then(res => {
                     if (!res.data.error) {
                         this.props.modal();
+                        window.scrollTo(0, 0);
                     } else {
                         alert(res.data.msg);
                     }

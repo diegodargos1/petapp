@@ -67,3 +67,10 @@ body, input, button, textarea{
     top: 15px;
     cursor: pointer;
 }
+
+
+@media only screen and (max-width: 900px) {
+    .modalDiv{
+        width: 90vw;
+    }
+}
