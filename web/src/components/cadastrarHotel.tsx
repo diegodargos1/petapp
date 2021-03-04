@@ -225,9 +225,9 @@ class CadastrarHotel extends React.Component<Props> {
                     .then(res => {
                         loginCreated = true;
                         if (!res.data.error) {
-                            localStorage.setItem('user', res.data.info.email);
-                            localStorage.setItem('userName', res.data.info.nome);
-                            localStorage.setItem('userId', res.data.info.id);
+                            // localStorage.setItem('user', res.data.info.email);
+                            // localStorage.setItem('userName', res.data.info.nome);
+                            // localStorage.setItem('userId', res.data.info.id);
                             this.setState({ userId: res.data.info.id })
                         }
                     })
