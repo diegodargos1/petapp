@@ -228,8 +228,18 @@
     width: 100%;
 }
 
+#page-cadastrar .main-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
 #page-cadastrar  .div-face {
     margin-top: 15px;
+    width: 100%;
 }
 
 #page-cadastrar  .create-store-face {
@@ -292,6 +302,7 @@
 
 #page-cadastrar .form-box{
     justify-content: flex-start;
+    width: 100%;
 }
 
 #page-cadastrar .buttons-register{

@@ -12,7 +12,7 @@ let logoIcon = L.icon({
 });
 
 function GeoLocation(props: { latitude: number; longitude: number; handleStore: Function; markers: any }) {
-    console.log(props.markers)
+    let count = 0;
     return (
         // <MapContainer style={{ width: "100%", height: "100%" }} center={[-23.6436397, -46.55689330000001]} zoom={13} >
         <MapContainer style={{ width: "100%", height: "100%" }} center={[props.latitude, props.longitude]} zoom={13} >
@@ -27,8 +27,9 @@ function GeoLocation(props: { latitude: number; longitude: number; handleStore: 
                 (props.markers.info !== undefined) ?
 
                     props.markers.info.map((m: { latitude: number; longitude: number; }) => {
+                        count++;
                         return (
-                            < Marker icon={logoIcon} key={m.latitude} position={[m.latitude, m.longitude]} eventHandlers={{
+                            < Marker icon={logoIcon} key={m.latitude + m.longitude + count} position={[m.latitude, m.longitude]} eventHandlers={{
                                 click: () => {
                                     props.handleStore(m)
                                 }

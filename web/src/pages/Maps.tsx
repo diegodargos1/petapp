@@ -1,9 +1,12 @@
 import React, { Component, useEffect, useState } from 'react';
-import { FiClock, FiMapPin, FiMenu, FiX } from 'react-icons/fi';
+import { FiCalendar, FiClock, FiMapPin, FiMenu, FiX } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import logoImg from '../assets/images/boxicon.png';
 import noImage from '../assets/images/noimage.png';
+import CadastrarBox from '../components/cadastrarBox';
+import PersonalItems from '../components/menu/loggedItems';
+import NonPersonalItems from '../components/menu/nonloggedItems';
 import GeoLocation from '../controller/geolocator';
 import api from '../services/api';
 import { ApplicationState } from '../store';
@@ -12,6 +15,7 @@ import { StoreData } from '../store/ducks/store/types';
 import '../styles/global.css';
 import '../styles/pages/maps.css';
 const { detect } = require('detect-browser');
+
 
 const browser = detect();
 
@@ -62,6 +66,8 @@ const hotel = {
 
 
 
+
+
 type Props = Stateprops & DispatchProps
 function Maps(Props: Component<Props>) {
     const [markers, setMarkers] = useState([{}]);
@@ -71,7 +77,9 @@ function Maps(Props: Component<Props>) {
     const [googleLink, setGoogleLink] = useState('')
     const [latitude] = useState(-23.61172);
     const [longitude] = useState(-46.54690129999999);
-
+    const [loading, setLoading] = useState(true);
+    const [login, setLogin] = useState(false);
+    const [loginBox, setLoginBox] = useState(false);
 
     useEffect(() => {
         let checkLocationSafari = () => {
@@ -118,18 +126,20 @@ function Maps(Props: Component<Props>) {
             // await setLongitude(crd.longitude);
         }
         let getStores = async () => {
+            if (localStorage.getItem('userId')) setLogin(true);
+
             await api.get(`/stores/location/${latitude}/${longitude}`, {
                 headers: { "Access-Control-Allow-Origin": "*" }
             })
                 .then(res => {
-                    setMarkers(res.data)
-                    console.log(res.data);
+                    setMarkers(res.data);
+                    setLoading(false);
                 })
         }
         if (browser.name === 'chrome') {
-            checkLocationChrome()
+            checkLocationChrome();
         } else {
-            checkLocationSafari()
+            checkLocationSafari();
         }
         getStores()
     }, [latitude, longitude]);
@@ -152,17 +162,61 @@ function Maps(Props: Component<Props>) {
 
     }
 
+    const handleLoginBox = () => {
+        setLoginBox(!loginBox);
+    }
+
+    const handleLoading = () => {
+        setLoading(!loading);
+    }
+
+    const handleLogin = () => {
+
+        setLogin(!login);
+    }
+    const handleLogout = () => {
+        setLogin(!login);
+        localStorage.clear();
+    }
+
     return (
         <div id="page-map">
+            <div className="loading-box" style={{ display: (loading ? "flex" : "none") }}>
+                <div className="loadingDiv" ></div>
+            </div>
+            <div id="page-cadastrar" style={{ display: (loginBox) ? "flex" : "none" }} >
+                <div className="cadastrar-login-box">
+                    <div className="close-cadastro" onClick={handleLoginBox}><FiX size={26} color="rgba(0,0,0,0.6)" /></div>
+                    <CadastrarBox display={loginBox} loading={handleLoading} redirect={() => { handleLogin(); handleLoginBox(); }}></CadastrarBox>
+                </div>
+            </div>
             <aside className={(menu) ? "asideOn" : "asideOff"} id="menu">
                 <div className="close-cadastro" onClick={handleMenu}><FiX size={36} color="#FFF" /></div>
                 <header>
                     <img src={logoImg} alt="logo" className="logo" />
-                    <h2>Escolha um local no mapa</h2>
-                    <p>
-                        Selecione o melhor local para seu companheiro.
-                        </p>
+                    <h2>Bem vindo ao DogMap</h2>
                 </header>
+                <main>
+                    <div>
+                        <input type="text" placeholder="Busque pelo Petshop ou Endereco"></input>
+                        <div className="box-buttons">
+                            <button className="search">
+                                Buscar
+                                    </button>
+                        </div>
+                    </div>
+                    <div className="menuLink">
+                        <ul>
+                            {(login) ?
+                                <PersonalItems handleLogout={handleLogout} />
+                                :
+                                <NonPersonalItems handleLoginBox={handleLoginBox} />
+                            }
+
+                            <li></li>
+                        </ul>
+                    </div>
+                </main>
                 <footer>
                     <strong>Seu pet em boas mãos!</strong>
                 </footer>
@@ -176,13 +230,36 @@ function Maps(Props: Component<Props>) {
                     <h2>{storeData.nome}</h2>
                 </header>
                 <main className="details-main">
-                    <div className="details-address">
-                        <FiMapPin size={25} color="#fff" />
-                        <a href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${googleLink}`}>{storeData.rua}, {storeData.numero} {storeData.complemento}
-                            <br />{storeData.cidade}, {storeData.estado} - {storeData.cep}
-                        </a>
+
+                    <div className="menuLink">
+                        <ul>
+                            <li>
+                                <FiClock size={25} color="#fff" />
+                                <a href="#" >Agendar Banho</a>
+                            </li>
+                            <li>
+                                <FiCalendar size={25} color="#fff" />
+                                <a href="#" >Agendar Hotel</a>
+                            </li>
+                            {/* <li>
+                                <FiMapPin size={25} color="#fff" />
+                                <a id="address" href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${googleLink}`}>{storeData.rua}, {storeData.numero} {storeData.complemento}
+                                    <br />{storeData.cidade}, {storeData.estado} - {storeData.cep}
+                                </a>
+                            </li> */}
+                        </ul>
                     </div>
-                    <div className="details-horario">
+                    <div className="menuLink info">
+                        <ul>
+                            <li>
+                                <FiMapPin className="icon" size={25} color="#fff" />
+                                <a id="address" href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${googleLink}`}>{storeData.rua}, {storeData.numero} {storeData.complemento}
+                                    <br />{storeData.cidade}, {storeData.estado} - {storeData.cep}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {/* <div className="details-horario">
                         <FiClock size={25} color="#fff" />
                         <ul>
                             <li>Domingo: {storeData.domingoAbre}:00 - {storeData.domingoFecha}:00</li>
@@ -194,7 +271,7 @@ function Maps(Props: Component<Props>) {
                             <li>Sabado: {storeData.sabadoAbre}:00 - {storeData.sabadoFecha}:00</li>
 
                         </ul>
-                    </div>
+                    </div> */}
                 </main>
                 <footer>
 

@@ -9,6 +9,7 @@ import * as UserActions from '../store/ducks/users/actions';
 import { UserData } from '../store/ducks/users/types';
 import '../styles/global.css';
 import '../styles/pages/cadastrarbox.css';
+import LoginFacebook from './facebook';
 
 
 interface Stateprops {
@@ -47,8 +48,6 @@ class CadastrarBox extends React.Component<Props> {
         passwordCheck: false,
         passwordColor: "black",
         passwordTxt: "Senha*",
-        nome: "",
-        nomeColor: "black",
         pViewer: false,
         textInput: React.createRef(),
         loading: false,
@@ -92,11 +91,6 @@ class CadastrarBox extends React.Component<Props> {
                     emailTxt: "Email invalido.",
                     emailColor: "red"
                 })
-            } else if (this.state.nome === "") {
-                this.nomeInput.current?.focus()
-                this.setState({
-                    nomeColor: "red"
-                })
             } else {
                 this.props.loading();
                 await api.post(`/users`, this.state, {
@@ -110,7 +104,7 @@ class CadastrarBox extends React.Component<Props> {
                             localStorage.setItem('user', res.data.info.email);
                             localStorage.setItem('userName', res.data.info.nome);
                             localStorage.setItem('userId', res.data.info.id);
-                            this.props.redirect()
+                            this.props.redirect();
                         }
                     })
             }
@@ -192,12 +186,12 @@ class CadastrarBox extends React.Component<Props> {
                     <p>
                         E rapido e facil.
                     </p>
-                    {/* <div className={"div-face"}>
+                    <div className={"div-face"}>
                         <LoginFacebook loading={this.props.loading} redirect={this.props.redirect} />
-                    </div> */}
+                    </div>
 
                     <div className={"form-box"}>
-                        <div className="box-buttons" style={{ display: (this.state.entrar || this.state.cadastrar) ? "none" : "flex" }}>
+                        <div className="box-buttons" style={{ display: (this.state.entrar) ? "none" : "flex" }}>
                             <button className="create-store-register" onClick={handleEntrarForm}>
                                 Entrar
                             </button>
@@ -232,10 +226,6 @@ class CadastrarBox extends React.Component<Props> {
                         </div>
                         <div>
                             <form className={"form-signin"} onSubmit={formSubmit} style={{ display: (this.state.cadastrar) ? "block" : "none" }}>
-                                <div className="field">
-                                    <input type="text" ref={this.nomeInput} name="nome" id="nome" placeholder="Seu nome" onChange={handleInput} />
-                                    <label style={{ color: this.state.nomeColor }} htmlFor="nome">Nome*</label>
-                                </div>
                                 <div className="field">
                                     <input type="text" ref={this.emailInput} name="email" id="email" placeholder="email@email.com" onChange={handleInput} />
                                     <label style={{ color: this.state.emailColor }} htmlFor="email">{this.state.emailTxt}</label>
