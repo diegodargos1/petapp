@@ -235,11 +235,11 @@ function Maps(Props: Component<Props>) {
                         <ul>
                             <li>
                                 <FiClock size={25} color="#fff" />
-                                <a href="/#" >Agendar Banho</a>
+                                <a >Agendar Banho</a>
                             </li>
                             <li>
                                 <FiCalendar size={25} color="#fff" />
-                                <a href="/#" >Agendar Hotel</a>
+                                <a >Agendar Hotel</a>
                             </li>
                             {/* <li>
                                 <FiMapPin size={25} color="#fff" />

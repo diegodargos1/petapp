@@ -5,10 +5,10 @@ function PersonalItems ( f )
 {
     return (
         <>
-            <li><a className="liBtn" href="/#">Perfil</a></li>
-            <li><a className="liBtn" href="/#">Favoritos</a></li>
-            <li><a className="liBtn" href="/#">Historico</a></li>
-            <li><a className="liBtn" href="/#" onClick={ f.handleLogout }>Sair</a></li>
+            <li><a className="liBtn" >Perfil</a></li>
+            <li><a className="liBtn" >Favoritos</a></li>
+            <li><a className="liBtn" >Historico</a></li>
+            <li><a className="liBtn" onClick={ f.handleLogout }>Sair</a></li>
         </>
     );
 }
