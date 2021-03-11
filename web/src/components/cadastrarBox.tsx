@@ -157,24 +157,23 @@ class CadastrarBox extends React.Component<Props> {
             this.setState({ entrar: !this.state.entrar })
             this.setState({ cadastrar: false })
         }
-        const handleEntrarFace = async (data: any) => {
-            this.props.loading();
-            await api.post(`/users/face`, data, {
-                headers: { "Access-Control-Allow-Origin": "*" }
-            })
-                .then(res => {
-                    this.props.loading();
-                    if (res.data.error) {
-                        alert(res.data.msg);
-                    } else {
-                        localStorage.setItem('user', res.data.info.email);
-                        localStorage.setItem('userName', res.data.info.name);
-                        localStorage.setItem('userId', res.data.info.id);
-                        this.props.redirect()
-                    }
-                })
-
-        }
+        // const handleEntrarFace = async (data: any) => {
+        //     this.props.loading();
+        //     await api.post(`/users/face`, data, {
+        //         headers: { "Access-Control-Allow-Origin": "*" }
+        //     })
+        //         .then(res => {
+        //             this.props.loading();
+        //             if (res.data.error) {
+        //                 alert(res.data.msg);
+        //             } else {
+        //                 localStorage.setItem('user', res.data.info.email);
+        //                 localStorage.setItem('userName', res.data.info.name);
+        //                 localStorage.setItem('userId', res.data.info.id);
+        //                 this.props.redirect()
+        //             }
+        //         })
+        // }
 
         return (
             <>
