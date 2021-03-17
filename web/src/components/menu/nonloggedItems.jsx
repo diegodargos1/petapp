@@ -3,10 +3,9 @@
 import React from "react";
 function NonPersonalItems ( f )
 {
-    console.log( f );
     return (
         <>
-            <li><a onClick={ f.handleLoginBox }>Entrar</a></li>
+            <li onClick={ f.handleLoginBox }><p>Entrar</p></li>
         </>
     );
 }

@@ -1,4 +1,4 @@
-#page-cadastrar {
+#page-cadastrar{
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -10,11 +10,10 @@
     align-items: center;
 }
 
-#page-cadastrar .logo-cadastrar {
+.logo-cadastrar {
     margin-top: 10px;
 }
-
-#page-cadastrar .cadastrar-login-box {
+.cadastrar-login-box {
     width: 100%;
     max-width: 500px;
     max-height: 90%;
@@ -32,13 +31,13 @@
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
 }
 
-#page-cadastrar .cadastrar-login-box main {
+.cadastrar-login-box main {
     flex-direction: column;
     display: flex;
     width: 80%;
 }
 
-#page-cadastrar .cadastrar-login-box main h1{
+.cadastrar-login-box main h1{
     color: rgb(0, 0, 0);
     font-size: 36px;
     font-weight: 700;
@@ -46,7 +45,7 @@
     text-align: center;
 }
 
-#page-cadastrar .cadastrar-login-box main p{
+.cadastrar-login-box main p{
     color: rgb(0, 0, 0);
     margin-top: 0px;
     font-size: 24px; 
@@ -54,13 +53,13 @@
     text-align: center;
 }
 
-#page-cadastrar .content-wrapper-cadastrar main {
+.content-wrapper-cadastrar main {
     flex-direction: column;
     display: flex;
     width: 80%;
 }
 
-#page-cadastrar .content-wrapper-cadastrar {
+.content-wrapper-cadastrar {
     width: 100%;
     max-width: 500px;
     height: 100%;
@@ -75,7 +74,7 @@
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
 }
 
-#page-cadastrar .content-wrapper-cadastrar main h1{
+.content-wrapper-cadastrar main h1{
     color: rgb(0, 0, 0);
     font-size: 36px;
     font-weight: 700;
@@ -84,7 +83,7 @@
 }
 
 
-#page-cadastrar .content-wrapper-cadastrar main p{
+.content-wrapper-cadastrar main p{
     color: rgb(0, 0, 0);
     margin-top: 0px;
     font-size: 24px; 
@@ -122,11 +121,11 @@
     transition: background-color 0.2s;
 }
 
-#page-cadastrar  .content-wrapper .enter-app:hover{
+ .content-wrapper .enter-app:hover{
     background: #96feff;
 }
 
-#page-cadastrar .loginLink{
+.loginLink{
     color: #000;
     margin-left: 20px;
 }
@@ -216,7 +215,7 @@
     cursor: pointer;
   }
   
-  #page-cadastrar  .create-store {
+   .create-store {
     border: 0px;
     padding: 20px;
     background: #15c3d6;
@@ -228,7 +227,7 @@
     width: 100%;
 }
 
-#page-cadastrar .main-box{
+.main-box{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -236,13 +235,16 @@
     align-items: center;
     color: black;
 }
+.main-box h4{
+    text-align: center;
+}
 
-#page-cadastrar  .div-face {
+ .div-face {
     margin-top: 15px;
     width: 100%;
 }
 
-#page-cadastrar  .create-store-face {
+ .create-store-face {
     margin-top: 15px;
     border: 0px;
     padding: 20px;
@@ -256,7 +258,7 @@
     width: 100%;
 }
 
-#page-cadastrar  .create-store-register {
+ .create-store-register {
     border: 0px;
     padding: 20px;
     height: 64px;
@@ -269,7 +271,7 @@
     width: 100%;
 }
 
-#page-cadastrar  .create-store-back {
+ .create-store-back {
     border: 0px;
     padding: 20px;
     height: 64px;
@@ -283,7 +285,7 @@
 }
 
 
-#page-cadastrar .create-store-hidden {
+.create-store-hidden {
     margin: 2em 0;
     position: absolute;
     height: 64px;
@@ -296,16 +298,16 @@
     visibility: hidden;
 }
 
-#page-cadastrar .create-store:hover {
+.create-store:hover {
     background: #17d6eb;
 }
 
-#page-cadastrar .form-box{
+.form-box{
     justify-content: flex-start;
     width: 100%;
 }
 
-#page-cadastrar .buttons-register{
+.buttons-register{
     margin: 2em 0;
     width: 100%;
     background-color: white;
@@ -346,7 +348,7 @@
 }
 
 @media only screen and (max-height: 650px) {
-    #page-cadastrar .logo-cadastrar {
+    .logo-cadastrar {
         display: none;
     }
 }

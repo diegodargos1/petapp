@@ -57,7 +57,9 @@
     width: 100%;
     z-index: 1;
 }
-
+.logo-message{
+    margin-top: 10px;
+}
 
 
 .details-main{
@@ -100,8 +102,29 @@
     z-index: 2;
 }
 
+#page-map .box-info {
+    width: 100%;
+    max-width: 500px;
+    max-height: 90%;
+
+    margin: 10px;
+    padding: 10px;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.35);
+    color: #000;
+}
+
 #page-map .asideOn{
     width: 400px;
+    height: 100vh;
+    overflow: auto;
     opacity: 1;
     z-index: 56;
     -webkit-transition: all 0.5s ease-in-out;
@@ -112,6 +135,7 @@
 }
 
 #page-map .asideOff{
+    height: 0;
     width: 0px;
     opacity: 0;
     z-index: 0;
@@ -123,9 +147,14 @@
 }
 
 #page-map aside h2 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
     line-height: 32px;
+
+    margin-left: 10px;
+    margin-top: 15px;
+    
+    text-transform: uppercase;
 }
 
 #page-map aside p {
@@ -201,15 +230,20 @@
     width: fit-content;
     margin-bottom: 20px;
 }
-#page-map .menuLink ul a {
+#page-map .menuLink ul li {
     text-decoration: none;
+    cursor: pointer;
     color: #fff;
 }
-#address {
-font-size: 18px;
+.detail-store {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    vertical-align: top;
+    padding-left: 10px;
 }
 
-#page-map .menuLink ul li a:after {    
+#page-map .menuLink ul li:after {    
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
     content: "";
@@ -220,17 +254,18 @@ font-size: 18px;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 100%;
   }
-#page-map .menuLink ul li a:hover:after { 
+#page-map .menuLink ul li:hover:after { 
     width: 100%;
     right: 0;
     color: #ccf5ff;
 }
 
-#page-map .menuLink ul li a:hover { 
+#page-map .menuLink ul li:hover { 
     color: #ccf5ff;
 }
-#page-map .menuLink ul li .icon:hover { 
-    color: #ccf5ff;
+#page-map .menuLink ul li p { 
+    display: inline-block;
+    vertical-align: top;
 }
 
 .leaflet-div-icon{
@@ -251,6 +286,54 @@ font-size: 18px;
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+#page-map .react-datepicker__time-list{
+    display: flex;
+    flex-direction: column;
+}
+
+#page-map .react-datepicker__time-list-item--disabled{
+    display: none;
+}
+#page-map .react-datepicker{
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+#page-map .react-datepicker__time-container{
+    background-color: #fff;
+    border-left: 1px solid #000;
+}
+
+#page-map .react-datepicker__header{
+    background-color: #00C7C7;
+    color: #fff;
+    border-bottom: 1px solid #000;
+}
+
+#page-map .react-datepicker__header div{
+    color: #fff;
+}
+
+#page-map .banho-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#page-map .banho-box .agendar-btn {
+    width: 100%;
+    color: #fff;
+    background-color: #16c78e;
+    border-radius: 10px;
+    border: 0;
+    padding: 5px;
+    cursor: pointer;
+}
+#page-map .banho-box .agendar-btn:hover {
+    background-color: #15bd87;
 }
 
 .info {
@@ -277,7 +360,7 @@ font-size: 18px;
         transition: background-color 0.2s;
     }
     #store-detail .details-image img{
-        width: 340px;
+        width: 400px;
         top: 0;
         left: 0;
         transform: translateY(0) translateX(0);

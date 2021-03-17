@@ -73,4 +73,8 @@ body, input, button, textarea{
     .modalDiv{
         width: 90vw;
     }
+
+    .loadingDiv {
+        width: 55vw;
+    }
 }
